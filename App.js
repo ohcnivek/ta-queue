@@ -1,4 +1,5 @@
 import { View, Text } from "react-native";
+import Example from "./components/Example";
 
 export default function App() {
   return (
@@ -9,7 +10,13 @@ export default function App() {
         alignItems: "center",
       }}
     >
-      <Text>Universal React with Expo</Text>
+    <Text>Universal React with Expo</Text>
+
+
+    <Example name = "Kevin"></Example>
+    <Example name = "Kelly"></Example>
+  
     </View>
+    
   );
 }
