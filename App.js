@@ -5,15 +5,15 @@ export default function App() {
   return (
     <View
       style={{
-        flex: 1,
+        //flex: 2,
         justifyContent: "center",
         alignItems: "center",
       }}
     >
     <Text>Universal React with Expo</Text>
 
-
-    <Example
+    
+    <Example style = {{flex:2}}
       name="Kevin"
       question ="why am i so cool?"
       desc= "coder dude"
@@ -22,9 +22,10 @@ export default function App() {
       privateBool="true"
       >
     </Example>
-    <Example name="Kelly" desc= "coder gal"></Example>
+    <Example style = {{flex:1}} name="Kelly" desc= "coder gal"></Example>
   
     </View>
+    
     
   );
 }
