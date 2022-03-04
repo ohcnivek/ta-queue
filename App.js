@@ -13,8 +13,16 @@ export default function App() {
     <Text>Universal React with Expo</Text>
 
 
-    <Example name = "Kevin"></Example>
-    <Example name = "Kelly"></Example>
+    <Example
+      name="Kevin"
+      question ="why am i so cool?"
+      desc= "coder dude"
+      status="Waiting"
+      time="4 minutes left"
+      privateBool="true"
+      >
+    </Example>
+    <Example name="Kelly" desc= "coder gal"></Example>
   
     </View>
     
