@@ -22,22 +22,6 @@ export default function App({ navigation }) {
   );
 }
 
-
-
-// function JoinQueueScreen({ navigation }) {
-//   return (
-//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-//       <Input placeholder='Name'/>
-//       <Input placeholder='Question'/>
-//       <Input placeholder='Description'/>
-//       <Button
-//         title="Join Queue"
-//         onPress={() => navigation.navigate('Queue')}
-//       />
-//     </View>
-//   );
-// }
-
 const styles = StyleSheet.create({
   contentView: {
     flex: 1,
