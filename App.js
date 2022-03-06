@@ -1,10 +1,13 @@
-//import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet} from "react-native";
-import Example from "./components/Example";
+import Question from "./components/Question";
+import QuestionList from "./components/QuestionList";
 import {Button, Input} from 'react-native-elements';
 //import { createStackNavigator, createAppContainer } from 'react-navigation';  
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import QueueScreen from './screens/QueueScreen';
+import JoinQueueScreen from './screens/JoinQueueScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,60 +22,21 @@ export default function App({ navigation }) {
   );
 }
 
-function QueueScreen({ navigation }) {
-  return (
-    <View style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
 
-    <View style= {{flexDirection: 'column', flex: 14}}>
-      <Example style = {{flex:2}}
-        name="Kevin"
-        question ="How to differentiate Java exception?"
-        desc= "coder dude"
-        status="Waiting"
-        time="4 minutes left"
-        privateBool="true"
-        >
-      </Example>
 
-      <Example style = {{flex:2}}
-        name="Kelly"
-        question ="Is there a typo in Homework 1's Question 6?"
-        desc= "I saw the pdf say we should account for null but when I try to make a copy constructor, I feel there is not a way for me to account for null when trying to pass in the correct objects."
-        status="Waiting"
-        time="11 minutes left"
-        privateBool="true"
-        >
-      </Example>
-      </View>
-      
-      <Button 
-        style = {styles.joinQueueButton}
-        title= "Join Queue"
-        onPress={() => navigation.navigate('Join Queue')}
-      ></Button>
-      
-    </View>
-  );
-}
-
-function JoinQueueScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Input placeholder='Name'/>
-      <Input placeholder='Question'/>
-      <Input placeholder='Description'/>
-      <Button
-        title="Join Queue"
-        onPress={() => navigation.navigate('Queue')}
-      />
-    </View>
-  );
-}
+// function JoinQueueScreen({ navigation }) {
+//   return (
+//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+//       <Input placeholder='Name'/>
+//       <Input placeholder='Question'/>
+//       <Input placeholder='Description'/>
+//       <Button
+//         title="Join Queue"
+//         onPress={() => navigation.navigate('Queue')}
+//       />
+//     </View>
+//   );
+// }
 
 const styles = StyleSheet.create({
   contentView: {
