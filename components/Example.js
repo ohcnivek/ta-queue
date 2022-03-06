@@ -8,53 +8,56 @@ class Example extends Component {
       <View style={{
         justifyContent: "center",
         alignItems: "center",
-        width: "80%",
+        width: "100%",
       }}>
-      <Text>{this.props.name} </Text>
-      <Text>{this.props.question}
-      </Text>
       
-
       <Button
-          title={<CustomTitle question="lsjfslkdj"/>}
+          title={
+            <CustomTitle 
+              question={this.props.question}
+              desc={this.props.desc}
+              time={this.props.time}
+              status={this.props.status}
+              />
+            }
           titleStyle={{ fontWeight: 'bold', fontSize: 38 }}
           buttonStyle={{
             borderWidth: 0,
             borderColor: 'transparent',
             borderRadius: 20,
+            backgroundColor: '#fcead7',
           }}
           containerStyle={{
-            width: "80%",
+            width: "90%",
             marginHorizontal: 50,
             marginVertical: 10,
           }}
-          icon={{
-            name: 'arrow-right',
-            type: 'font-awesome',
-            size: 15,
-            color: 'white',
-          }}
-          iconRight
-          iconContainerStyle={{ marginLeft: 10, marginRight: 10 }}
         />
-
-      <Text>{this.props.desc} </Text>
-      <Text>{this.props.status} </Text>
-      <Text>{this.props.time} </Text>
-      <Text>{this.props.private} </Text>
-      <Boolean>{this.props.privateBool} </Boolean>
       </View>
     );
   }
 }
 
-const CustomTitle = () => {
+const CustomTitle = (props) => {
+  const question = props.question;
+  const desc = props.desc;
+  const time = props.time;
+  const status = props.status;
   return (
-    <View style={{ flexDirection: 'column' }}>
-      <Text style={{ fontWeight: 'bold', fontSize: 18 }}>John hidfe</Text>
-      <Text style={{ fontStyle: 'italic', fontSize: 12 }}>
-        Minister of Magic
-      </Text>
+    <View style= {{ flexDirection: 'row'}}>
+      <View style={{ flex: 2, flexDirection: 'column' }}>
+        <Text style={{ fontWeight: 'bold', fontSize: 18 }}>{question}</Text>
+        <Text style={{ fontStyle: 'italic', fontSize: 12 }}>
+          {desc}
+        </Text>
+      </View>
+
+      <View style={{ flex: 1, flexDirection: 'column' }}>
+        <Text style={{ fontWeight: 'bold', fontSize: 14 }}>{time}</Text>
+        <Text style={{ fontStyle: 'italic', fontSize: 12 }}>
+          {status}
+        </Text>
+      </View>
     </View>
   );
 };
@@ -73,7 +76,7 @@ const styles = StyleSheet.create({
   //   marginVertical: 20,
   // }, 
   subHeader: {
-    backgroundColor : "#2089dc",
+    backgroundColor : "#FCEAD7",
     color : "white",
     textAlign : "center",
     paddingVertical : 5,
