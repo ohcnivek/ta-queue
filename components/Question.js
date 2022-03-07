@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet} from 'react-native';
 import { Button, ButtonGroup, withTheme, Text } from 'react-native-elements';
 
-class Example extends Component {
+class Question extends Component {
   render() {
     return (
       <View style={{
@@ -84,4 +84,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Example;
+export default Question;

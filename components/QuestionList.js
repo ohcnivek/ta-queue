@@ -1,34 +1,45 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet} from "react-native";
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, ScrollView} from "react-native";
 import Question from './Question';
+import {get, post} from "../data/Calls"
 
-class QuestionList extends React.Component {  
-    render() {  
-        return (  
-            <View style= {{flexDirection: 'column', flex: 14}}>
-                <Question style = {{flex:2}}
-                    name="Kevin"
-                    question ="How to differentiate Java exception?"
-                    desc= "coder dude"
-                    status="Waiting"
-                    time="4 minutes left"
-                    privateBool="true"
-                    >
-                </Question>
+const QuestionList = () => {
+    const [questions, setQuestions] = useState([]);
 
-                <Question style = {{flex:2}}
-                    name="Kelly"
-                    question ="Is there a typo in Homework 1's Question 6?"
-                    desc= "I saw the pdf say we should account for null but when I try to make a copy constructor, I feel there is not a way for me to account for null when trying to pass in the correct objects."
-                    status="Waiting"
-                    time="11 minutes left"
-                    privateBool="true"
-                    >
-                </Question>
-            </View>
-        );  
-    }  
-}  
+    useEffect( () => { 
+        async function fetchData() {
+            try {
+                const res = await get(); 
+                console.log("in use effect")
+                console.log(res);
+                setQuestions(res.data.documents);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        fetchData();
+    }, []); // only will call when question is empty 
+
+    return (  
+        <View style= {{flexDirection: 'column', flex: 14}}>
+            <ScrollView>
+                {
+                    questions.map(Entry => {
+                        return <Question style = {{flex:2}}
+                            name= {Entry.fields.name.stringValue}
+                            question = {Entry.fields.question.stringValue}
+                            desc= {Entry.fields.desc.stringValue}
+                            status= {Entry.fields.status.stringValue}
+                            time="4 minutes left"
+                            privateBool= {Entry.fields.privateBool.booleanValue}
+                            >
+                        </Question>
+                    })
+                }
+            </ScrollView>
+        </View>
+    )
+}
 
 
 export default QuestionList;
