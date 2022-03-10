@@ -16,6 +16,6 @@ screens:
 data: 
 - `Calls.js` - stores functions for api calls
 
-#To Run
+# To Run
 
 `npm install` + `npm start`
