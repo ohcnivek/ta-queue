@@ -1,11 +1,14 @@
 import axios from "axios"
+import {EXPO_APP_API_KEY,EXPO_APP_COLLECTION,EXPO_APP_PROJECT } from '@env'
+
+const firebaseLink = "https://firestore.googleapis.com/v1/projects/"+ EXPO_APP_PROJECT +"/databases/(default)/documents/"+ EXPO_APP_COLLECTION +"?key=" + EXPO_APP_API_KEY
 
 async function get() {
-    return await axios.get(`https://firestore.googleapis.com/v1/projects/ta-queue-99b26/databases/(default)/documents/queue-questions?key=AIzaSyB8wMqIFUVb6mMiL7L17IoKRPBLxFacsLo`);
+    return await axios.get(firebaseLink);
 }
 
 async function post(question, name, desc, status, time, privateBool, gtid) {
-    return await axios.post('https://firestore.googleapis.com/v1/projects/ta-queue-99b26/databases/(default)/documents/queue-questions?key=AIzaSyB8wMqIFUVb6mMiL7L17IoKRPBLxFacsLo', 
+    return await axios.post(firebaseLink, 
             { 
                 fields: { 
                     question: { stringValue: question }, 

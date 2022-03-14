@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet} from "react-native";
 import QuestionList from '../components/QuestionList';
-import {Button, Input, Checkbox} from 'react-native-elements';
+import {Button, Input, CheckBox} from 'react-native-elements';
 
 
 function JoinQueueScreen(props, {navigation}) {
