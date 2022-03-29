@@ -23,8 +23,7 @@ const QuestionList = () => {
     return (  
         <View style= {{flexDirection: 'column', flex: 14}}>
             <ScrollView>
-                {
-                    questions.map(Entry => {
+                {questions.length > 0 ? (questions.map(Entry => {
                         return <Question style = {{flex:2}}
                             name= {Entry.fields.name.stringValue}
                             question = {Entry.fields.question.stringValue}
@@ -34,7 +33,7 @@ const QuestionList = () => {
                             privateBool= {Entry.fields.privateBool.booleanValue}
                             >
                         </Question>
-                    })
+                    })) : (<p>no posts</p>)
                 }
             </ScrollView>
         </View>
