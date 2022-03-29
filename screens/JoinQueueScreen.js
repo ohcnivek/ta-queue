@@ -5,18 +5,37 @@ import {Button, Input, CheckBox} from 'react-native-elements';
 
 
 function JoinQueueScreen(props, {navigation}) {
-    const [checked, toggleChecked] = useState(false);
+    const [checkedInPerson, toggleCheckedInPerson] = useState(false);
+    const [checkedVirtual, toggleCheckedVirtual] = useState(false);
+    const [checkedPrivate, toggleCheckedPrivate] = useState(false);
+    const [checkedPublic, toggleCheckedPublic] = useState(false);
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start' }}>
             <Input placeholder='Question'/>
             <Input placeholder='Description'/>
-            <Text style={{ fontSize: 18 }}>In-person or Virtual?</Text>
+            <Text style={{ fontSize: 18 }}>In-Person or Virtual?</Text>
             <CheckBox
-              title="My Checkbox"
-              checked={checked}
-              onPress={() => toggleChecked(!checked)}
+              title="In-Person"
+              checked={checkedInPerson}
+              onPress={() => toggleCheckedInPerson(!checkedInPerson)}
+              /> 
+            <CheckBox
+            title="Virtual"
+            checked={checkedVirtual}
+            onPress={() => toggleCheckedVirtual(!checkedVirtual)}
               /> 
             <Input placeholder='Meeting Link for Virtual Office Hours'/>
+            <Text style={{ fontSize: 18 }}>Private or Public?</Text>
+            <CheckBox
+              title="Private"
+              checked={checkedPrivate}
+              onPress={() => toggleCheckedPrivate(!checkedPrivate)}
+              /> 
+            <CheckBox
+            title="Public"
+            checked={checkedPublic}
+            onPress={() => toggleCheckedPublic(!checkedPublic)}
+              /> 
             <Button
                 title="Join Queue"
                 onPress={() => navigation.navigate('QueueScreen')}
