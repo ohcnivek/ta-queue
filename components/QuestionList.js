@@ -1,39 +1,42 @@
+import { query, onSnapshot, collection,  deleteDoc, doc, getDoc, setDoc  } from "firebase/firestore";
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView} from "react-native";
 import Question from './Question';
-import {get, post} from "../data/Calls"
+import { db } from "../data/firebase";
+
 
 const QuestionList = () => {
     const [questions, setQuestions] = useState([]);
+    const q = query(collection(db, "queue-questions"));
 
-    useEffect( () => { 
-        async function fetchData() {
-            try {
-                const res = await get(); 
-                console.log("in use effect")
-                console.log(res);
-                setQuestions(res.data.documents);
-            } catch (err) {
-                console.log(err);
-            }
-        }
-        fetchData();
-    }, []); // only will call when question is empty 
+    useEffect( 
+        () => onSnapshot(q, (querySnapshot) => {
+            // setQuestions()
+            const realTimeQuestions = [];
+            querySnapshot.forEach(doc => {
+                realTimeQuestions.push(doc.data());
+                console.log(doc.data())
+            });
+            setQuestions(realTimeQuestions);
+            
+        })
+
+    , []); // only will call when question is empty 
 
     return (  
         <View style= {{flexDirection: 'column', flex: 14}}>
             <ScrollView>
                 {questions.length > 0 ? (questions.map(Entry => {
                         return <Question style = {{flex:2}}
-                            name= {Entry.fields.name.stringValue}
-                            question = {Entry.fields.question.stringValue}
-                            desc= {Entry.fields.desc.stringValue}
-                            status= {Entry.fields.status.stringValue}
+                            name= {Entry.name}
+                            question = {Entry.question}
+                            desc= {Entry.desc}
+                            status= {Entry.status}
                             time="4 minutes left"
-                            privateBool= {Entry.fields.privateBool.booleanValue}
+                            privateBool= {Entry.privateBool}
                             >
                         </Question>
-                    })) : (<p>no posts</p>)
+                    })) : (<Text>no posts</Text>)
                 }
             </ScrollView>
         </View>
