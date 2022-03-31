@@ -13,11 +13,13 @@ class Question extends Component {
       
       <Button
           title={
-            <CustomTitle 
+            <CustomTitle
+              name = {this.props.name} 
               question={this.props.question}
               desc={this.props.desc}
               time={this.props.time}
               status={this.props.status}
+              groupMem={this.props.groupMem.join(', ')}
               />
             }
           titleStyle={{ fontWeight: 'bold', fontSize: 38 }}
@@ -39,18 +41,24 @@ class Question extends Component {
 }
 
 const CustomTitle = (props) => {
+  const name = props.name;
   const question = props.question;
   const desc = props.desc;
   const time = props.time;
   const status = props.status;
+  const groupMem = props.groupMem;
   return (
     <View style= {{ flexDirection: 'row'}}>
       <View style={{ flex: 2, flexDirection: 'column' }}>
+        <Text style={{ fontStyle: 'italic', fontSize: 12 }}>
+          {name + ", " + groupMem}
+        </Text>
         <Text style={{ fontWeight: 'bold', fontSize: 18 }}>{question}</Text>
         <Text style={{ fontStyle: 'italic', fontSize: 12 }}>
           {desc}
         </Text>
       </View>
+
 
       <View style={{ flex: 1, flexDirection: 'column' }}>
         <Text style={{ fontWeight: 'bold', fontSize: 14 }}>{time}</Text>
@@ -58,6 +66,8 @@ const CustomTitle = (props) => {
           {status}
         </Text>
       </View>
+
+      
     </View>
   );
 };
