@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore, doc, onSnapshot } from "firebase/firestore";
-import {EXPO_APP_API_KEY,EXPO_APP_COLLECTION,EXPO_APP_PROJECT } from '@env'
+import {EXPO_APP_API_KEY,EXPO_APP_PROJECT } from '@env'
 
 
 
