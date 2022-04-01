@@ -8,6 +8,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import QueueScreen from './screens/QueueScreen';
 import JoinQueueScreen from './screens/JoinQueueScreen';
+import JoinQuestionScreen from './screens/JoinQuestionScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +18,7 @@ export default function App({ navigation }) {
       <Stack.Navigator initialRouteName="Queue">
         <Stack.Screen name="Queue" component={QueueScreen} />
         <Stack.Screen name="Join Queue" component={JoinQueueScreen} />
+        <Stack.Screen name="Join Question" component={JoinQuestionScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
