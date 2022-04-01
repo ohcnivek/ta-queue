@@ -6,17 +6,23 @@ import {Button, Input} from 'react-native-elements';
 //import { createStackNavigator, createAppContainer } from 'react-navigation';  
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import TAorStudentScreen from './screens/TAorStudentScreen';
+import TAQueueScreen from './screens/TAQueueScreen';
 import QueueScreen from './screens/QueueScreen';
 import JoinQueueScreen from './screens/JoinQueueScreen';
+import JoinQuestionScreen from './screens/JoinQuestionScreen';
 
 const Stack = createNativeStackNavigator();
 
 export default function App({ navigation }) {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Queue">
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={TAorStudentScreen} />
+        <Stack.Screen name="TA Queue" component={TAQueueScreen} />
         <Stack.Screen name="Queue" component={QueueScreen} />
         <Stack.Screen name="Join Queue" component={JoinQueueScreen} />
+        <Stack.Screen name="Join Question" component={JoinQuestionScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

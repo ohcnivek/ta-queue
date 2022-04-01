@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet} from 'react-native';
 import { Button, ButtonGroup, withTheme, Text } from 'react-native-elements';
+import JoinQuestionScreen from '../screens/JoinQuestionScreen';
 
 class Question extends Component {
   render() {
@@ -12,6 +13,7 @@ class Question extends Component {
       }}>
       
       <Button
+          onPress= {this.props.press}
           title={
             <CustomTitle
               name = {this.props.name} 
@@ -58,8 +60,12 @@ const CustomTitle = (props) => {
           {desc}
         </Text>
       </View>
+<<<<<<< HEAD
 
 
+=======
+      
+>>>>>>> d644cb57ba0e0fcc049b90577dc6ce52858f2379
       <View style={{ flex: 1, flexDirection: 'column' }}>
         <Text style={{ fontWeight: 'bold', fontSize: 14 }}>{time}</Text>
         <Text style={{ fontStyle: 'italic', fontSize: 12 }}>

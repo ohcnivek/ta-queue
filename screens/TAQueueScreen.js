@@ -4,7 +4,7 @@ import QuestionList from '../components/QuestionList';
 import {Button, Input} from 'react-native-elements';
 
 
-function QueueScreen(props) {
+function TAQueueScreen(props, {navigation}) {
     return (
       <View style={{
           flex: 1,
@@ -13,12 +13,7 @@ function QueueScreen(props) {
         }}
       >
           <QuestionList press={() => props.navigation.navigate('Join Question')}></QuestionList>
-          
-          <Button 
-              style = {styles.joinQueueButton}
-              title= "Join Queue"
-              onPress={() => props.navigation.navigate('Join Queue')}>
-          </Button>
+
       </View>
     );
   }
@@ -73,5 +68,4 @@ const styles = StyleSheet.create({
 
 
 
-export default QueueScreen;
-
+export default TAQueueScreen;

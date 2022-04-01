@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet} from "react-native";
-import QuestionList from '../components/QuestionList';
-import {Button, Input} from 'react-native-elements';
+import {Button} from 'react-native-elements';
 
 
-function QueueScreen(props) {
+function TAorStudentScreen(props, {navigation}) {
     return (
       <View style={{
           flex: 1,
@@ -12,12 +11,37 @@ function QueueScreen(props) {
           alignItems: "center",
         }}
       >
-          <QuestionList press={() => props.navigation.navigate('Join Question')}></QuestionList>
+          <Text style={{ fontSize: 18 }}>Are you a student or a TA?</Text>
           
           <Button 
-              style = {styles.joinQueueButton}
-              title= "Join Queue"
-              onPress={() => props.navigation.navigate('Join Queue')}>
+              buttonStyle={{
+                backgroundColor: 'rgba(255, 193, 7, 1)',
+                borderRadius: 5,
+              }}
+              titleStyle={{ color: 'black' }}
+              containerStyle={{
+                marginHorizontal: 50,
+                height: 50,
+                width: 200,
+                marginVertical: 10,
+              }}
+              title= "Student"
+              onPress={() => props.navigation.navigate('Queue')}>
+          </Button>
+
+          <Button 
+              buttonStyle={{
+                backgroundColor: 'rgba(90, 154, 230, 1)',
+                borderRadius: 5,
+              }}
+              containerStyle={{
+                marginHorizontal: 50,
+                height: 50,
+                width: 200,
+                marginVertical: 10,
+              }}
+              title= "TA"
+              onPress={() => props.navigation.navigate('TA Queue')}>
           </Button>
       </View>
     );
@@ -45,10 +69,6 @@ const styles = StyleSheet.create({
     //   width: '100%',
     //   marginVertical: 20,
     // }, 
-    joinQueueButton: {
-      margin: 10,
-      backgroundColor: 'green',
-    },
     textPrimary: {
       marginVertical: 20,
       textAlign: 'center',
@@ -73,5 +93,4 @@ const styles = StyleSheet.create({
 
 
 
-export default QueueScreen;
-
+export default TAorStudentScreen;
