@@ -1,27 +1,23 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet} from "react-native";
 import QuestionList from '../components/QuestionList';
-import {Button, Input} from 'react-native-elements';
+import {Button, Input, CheckBox} from 'react-native-elements';
 
 
-function QueueScreen(props) {
+function JoinQuestionScreen(props, {navigation}) {
     return (
-      <View style={{
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-          <QuestionList press={() => props.navigation.navigate('Join Question')}></QuestionList>
-          
-          <Button 
-              style = {styles.joinQueueButton}
-              title= "Join Queue"
-              onPress={() => props.navigation.navigate('Join Queue')}>
-          </Button>
-      </View>
+        <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start' }}>
+            <Input placeholder='Name'/>
+            <Input placeholder='Reason to join'/>
+            <Button
+                title="Join Question"
+                onPress={() => navigation.navigate('QueueScreen')}
+            />
+        </View>
     );
+      
   }
+
 
 const styles = StyleSheet.create({
     contentView: {
@@ -69,9 +65,5 @@ const styles = StyleSheet.create({
     }
   });
 
-
-
-
-
-export default QueueScreen;
+export default JoinQuestionScreen;
 

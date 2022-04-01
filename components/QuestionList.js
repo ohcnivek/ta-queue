@@ -5,7 +5,7 @@ import Question from './Question';
 import { db } from "../data/firebase";
 
 
-const QuestionList = () => {
+const QuestionList = (props) => {
     const [questions, setQuestions] = useState([]);
     const q = query(collection(db, "queue-questions"));
 
@@ -28,6 +28,7 @@ const QuestionList = () => {
             <ScrollView>
                 {questions.length > 0 ? (questions.map(Entry => {
                         return <Question style = {{flex:2}}
+                            press = {props.press}
                             name= {Entry.name}
                             question = {Entry.question}
                             desc= {Entry.desc}
