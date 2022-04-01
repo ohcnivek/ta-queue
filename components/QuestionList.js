@@ -34,12 +34,7 @@ const QuestionList = (props) => {
                             desc= {Entry.desc}
                             status= {Entry.status}
                             time="4 minutes left"
-<<<<<<< HEAD
-                            privateBool= {Entry.fields.privateBool.booleanValue}
-                            groupMem = {[]}//{Entry.fields.privateBool.booleanValue ? ["kevin", "melanie", "kelly", "henry", "richard"] : Entry.fields.groupMem.arrayValue.values.map((element)=>element.stringValue)}
-=======
                             privateBool= {Entry.privateBool}
->>>>>>> d644cb57ba0e0fcc049b90577dc6ce52858f2379
                             >
                         </Question>
                     })) : (<Text>no posts</Text>)
