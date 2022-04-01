@@ -35,7 +35,7 @@ const QuestionList = (props) => {
                             status= {Entry.status}
                             time="4 minutes left"
                             privateBool= {Entry.privateBool}
-                            groupMem = {[]}//{Entry.fields.privateBool.booleanValue ? ["kevin", "melanie", "kelly", "henry", "richard"] : Entry.fields.groupMem.arrayValue.values.map((element)=>element.stringValue)}
+                            groupMem = {Entry.privateBool ? [] : Entry.groupMem}
                             >
                         </Question>
                     })) : (<Text>no posts</Text>)
