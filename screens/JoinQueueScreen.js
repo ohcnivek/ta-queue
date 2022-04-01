@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet} from "react-native";
+import { View, Text, TextInput, StyleSheet} from "react-native";
 import QuestionList from '../components/QuestionList';
 import {Button, Input, CheckBox} from 'react-native-elements';
+import { post } from '../data/firebase';
 
 
 function JoinQueueScreen(props, {navigation}) {
@@ -9,10 +10,17 @@ function JoinQueueScreen(props, {navigation}) {
     const [checkedVirtual, toggleCheckedVirtual] = useState(false);
     const [checkedPrivate, toggleCheckedPrivate] = useState(false);
     const [checkedPublic, toggleCheckedPublic] = useState(false);
+    const [nameUserText, setNameUserText] = useState("");
+    const [questionUserText, setQuestionUserText] = useState("");
+    const [descriptionUserText, setDescriptionUserText] = useState("");
+    const [meetingLinkUserText, setMeetingLinkUserText] = useState("");
+
     return (
         <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start' }}>
-            <Input placeholder='Question'/>
-            <Input placeholder='Description'/>
+            <Input placeholder='Name'  onChangeText={(text) => setNameUserText(text)}/>
+            <Input placeholder='Question' onChangeText={(text) => setQuestionUserText(text)}/>
+            <Input placeholder='Description'  onChangeText={(text) => setDescriptionUserText(text)}/>
+
             <Text style={{ fontSize: 18 }}>In-Person or Virtual?</Text>
             <CheckBox
               title="In-Person"
@@ -38,7 +46,15 @@ function JoinQueueScreen(props, {navigation}) {
               /> 
             <Button
                 title="Join Queue"
-                onPress={() => navigation.navigate('QueueScreen')}
+                onPress={() => {
+                  props.navigation.navigate('Queue')
+                  post(descriptionUserText, [], nameUserText, checkedPrivate, questionUserText, "test");
+                }
+                }
+
+                  // 
+                
+                
             />
         </View>
     );

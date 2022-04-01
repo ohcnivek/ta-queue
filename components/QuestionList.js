@@ -14,7 +14,8 @@ const QuestionList = (props) => {
             // setQuestions()
             const realTimeQuestions = [];
             querySnapshot.forEach(doc => {
-                realTimeQuestions.push(doc.data());
+                realTimeQuestions.push({data: doc.data(), docID: doc.id});
+                console.log(doc.id)
                 console.log(doc.data())
             });
             setQuestions(realTimeQuestions);
@@ -29,13 +30,14 @@ const QuestionList = (props) => {
                 {questions.length > 0 ? (questions.map(Entry => {
                         return <Question style = {{flex:2}}
                             press = {props.press}
-                            name= {Entry.name}
-                            question = {Entry.question}
-                            desc= {Entry.desc}
-                            status= {Entry.status}
+                            name= {Entry.data.name}
+                            question = {Entry.data.question}
+                            desc= {Entry.data.desc}
+                            status= {Entry.data.status}
                             time="4 minutes left"
-                            privateBool= {Entry.privateBool}
-                            groupMem = {Entry.privateBool ? [] : Entry.groupMem}
+                            privateBool= {Entry.data.privateBool}
+                            groupMem = {Entry.data.privateBool ? [] : Entry.data.groupMem}
+                            docID = {Entry.docID}
                             >
                         </Question>
                     })) : (<Text>no posts</Text>)

@@ -62,6 +62,7 @@ const CustomTitle = (props) => {
       </View>
 
 
+      
       <View style={{ flex: 1, flexDirection: 'column' }}>
         <Text style={{ fontWeight: 'bold', fontSize: 14 }}>{time}</Text>
         <Text style={{ fontStyle: 'italic', fontSize: 12 }}>
