@@ -31,7 +31,7 @@ const QuestionList = () => {
                             status= {Entry.fields.status.stringValue}
                             time="4 minutes left"
                             privateBool= {Entry.fields.privateBool.booleanValue}
-                            groupMem = {Entry.fields.privateBool.booleanValue ? ["kevin", "melanie", "kelly", "henry", "richard"] : Entry.fields.groupMem.arrayValue.values.map((element)=>element.stringValue)}
+                            groupMem = {[]}//{Entry.fields.privateBool.booleanValue ? ["kevin", "melanie", "kelly", "henry", "richard"] : Entry.fields.groupMem.arrayValue.values.map((element)=>element.stringValue)}
                             >
                         </Question>
                     })) : (<Text>no posts</Text>)
