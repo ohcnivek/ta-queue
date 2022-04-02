@@ -49,7 +49,7 @@ function JoinQueueScreen(props, {navigation}) {
               /> 
             </View>
 
-            <Input placeholder='Meeting Link for Virtual Office Hours' onChangeText={(text) => meetingLinkUserText(text)}/>
+            <Input placeholder='Meeting Link for Virtual Office Hours' onChangeText={(text) => setMeetingLinkUserText(text)}/>
             <Text style={{ fontSize: 18 }}>Private or Public?</Text>
             <View style={{flexDirection: 'row', marginLeft: "1%"}}>
               <CheckBox
