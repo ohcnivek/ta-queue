@@ -1,34 +1,30 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet} from "react-native";
 import QuestionList from '../components/QuestionList';
-import {Button, Input} from 'react-native-elements';
+import {Button, Input, CheckBox} from 'react-native-elements';
+import {deleteQuestion} from '../data/firebase'
 
 
-function QueueScreen(props) {
+function DeleteQuestionScreen(props, {navigation}) {
+    // const [nameUserText, setNameUserText] = useState("");
+    const questionID = props.route.params.docID; 
+
     return (
-      <View style={{
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-          <QuestionList 
-          // press={(docID) => {
-          //       props.navigation.navigate('Join Question', {docRefID: docID})
-          //   }}
-            navigation = {props.navigation}
-            isStudent = {true}
-            >
-          </QuestionList>
-          
-          <Button 
-              style = {styles.joinQueueButton}
-              title= "Join Queue"
-              onPress={() => props.navigation.navigate('Join Queue')}>
-          </Button>
-      </View>
+        <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start' }}>
+            {/* <Input placeholder='Name' onChangeText={(text) => setNameUserText(text)}/>
+            <Input placeholder='Reason to join'/> */}
+            <Button
+                title="Delete Question"
+                onPress={() => {
+                  deleteQuestion(questionID)
+                  props.navigation.navigate('TA Queue')
+                }}
+            />
+        </View>
     );
+      
   }
+
 
 const styles = StyleSheet.create({
     contentView: {
@@ -76,9 +72,5 @@ const styles = StyleSheet.create({
     }
   });
 
-
-
-
-
-export default QueueScreen;
+export default DeleteQuestionScreen;
 

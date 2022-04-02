@@ -11,6 +11,7 @@ import TAQueueScreen from './screens/TAQueueScreen';
 import QueueScreen from './screens/QueueScreen';
 import JoinQueueScreen from './screens/JoinQueueScreen';
 import JoinQuestionScreen from './screens/JoinQuestionScreen';
+import DeleteQuestionScreen from './screens/DeleteQuestionScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,7 +23,8 @@ export default function App({ navigation }) {
         <Stack.Screen name="TA Queue" component={TAQueueScreen} />
         <Stack.Screen name="Queue" component={QueueScreen} />
         <Stack.Screen name="Join Queue" component={JoinQueueScreen} />
-        <Stack.Screen name="Join Question" component={JoinQuestionScreen} initialParams={{'key':'value'}}/>
+        <Stack.Screen name="Join Question" component={JoinQuestionScreen}/>
+        <Stack.Screen name="Delete Question" component={DeleteQuestionScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

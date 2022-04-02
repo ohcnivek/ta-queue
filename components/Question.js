@@ -13,7 +13,13 @@ class Question extends Component {
       }}>
       
       <Button
-          onPress= {() => this.props.navigation.navigate('Join Question', {docID: this.props.docID})}
+          onPress= {() => {
+            if (this.props.isStudent) {
+              this.props.navigation.navigate('Join Question', {docID: this.props.docID})
+            } else {
+              this.props.navigation.navigate('Delete Question', {docID: this.props.docID})
+            }
+          }}
           title={
             <CustomTitle
               name = {this.props.name} 

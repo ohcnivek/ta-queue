@@ -44,7 +44,7 @@ async function deleteQuestion(docRefID) {
   const deleted = await deleteDoc(docRef);
 }
 
-// deleteQuestion('yWyni9H1MadpCJwk8SJz');
+// deleteQuestion('EUs99rmX0m2q6myPG1B5');
 // addGroupMem('yWyni9H1MadpCJwk8SJz', "test2")
 
 

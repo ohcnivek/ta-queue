@@ -12,8 +12,8 @@ function TAQueueScreen(props, {navigation}) {
           alignItems: "center",
         }}
       >
-          <QuestionList press={() => props.navigation.navigate('Join Question')}></QuestionList>
-
+          <QuestionList navigation = {props.navigation} isStudent = {false}>
+          </QuestionList>
       </View>
     );
   }
