@@ -14,7 +14,7 @@ class Question extends Component {
       
       <Button
           onPress= {() => {
-            if (this.props.privateBool) {
+            if (this.props.privateBool && this.props.isStudent) {
               //  its private
               Alert.alert("Can't join a private question!")
 
