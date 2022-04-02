@@ -41,7 +41,7 @@ const QuestionList = (props) => {
                             docID = {Entry.docID}
                             >
                         </Question>
-                    })) : (<Text>no posts</Text>)
+                    })) : (<Text> No posts :( </Text>)
                 }
             </ScrollView>
         </View>

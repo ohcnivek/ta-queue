@@ -2,9 +2,6 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore, doc, deleteDoc, onSnapshot, collection, addDoc, updateDoc, FieldValue, arrayUnion, update } from "firebase/firestore";
 import {EXPO_APP_API_KEY,EXPO_APP_PROJECT } from '@env'
 
-
-
-
 const firebaseConfig = {
     apiKey: EXPO_APP_API_KEY,
     authDomain: EXPO_APP_PROJECT + ".firebaseapp.com",
@@ -29,7 +26,7 @@ async function post(desc, groupMem, name, privateBool, question, status) {
         status: status,
       });
 
-      console.log("Document written with ID: ", docRef.id);
+      console.log("Success! Document written with ID: ", docRef.id);
 }
 
 async function addGroupMem(docRefID, memberToAdd) {
@@ -44,11 +41,11 @@ async function deleteQuestion(docRefID) {
   const deleted = await deleteDoc(docRef);
 }
 
-// deleteQuestion('EUs99rmX0m2q6myPG1B5');
-// addGroupMem('yWyni9H1MadpCJwk8SJz', "test2")
+async function updateStatus(docRefID, status) {
+  const docRef = doc(db, COLLECTION, docRefID); 
+  const updated = await updateDoc(docRef, {
+    status: status
+  });
+}
 
-
-export {post, addGroupMem, deleteQuestion}
-
-
-// post("live demo 2 ", [], "post kevin", true, "live demo post question", "1 min post")
+export {post, addGroupMem, deleteQuestion, updateStatus}

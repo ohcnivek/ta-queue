@@ -2,18 +2,36 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet} from "react-native";
 import QuestionList from '../components/QuestionList';
 import {Button, Input, CheckBox} from 'react-native-elements';
-import {deleteQuestion} from '../data/firebase'
+import {deleteQuestion, updateStatus} from '../data/firebase'
 
 
-function DeleteQuestionScreen(props, {navigation}) {
+function TaManagementScreen(props, {navigation}) {
     const questionID = props.route.params.docID; 
+    
 
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Button
-                title="Delete Question"
+                title="Delete/ Done with Question "
                 onPress={() => {
                   deleteQuestion(questionID)
+                  props.navigation.navigate('TA Queue')
+                }}
+            />
+            <Button
+                title="Set Status to: In Progress"
+                onPress={() => {
+                  // deleteQuestion(questionID)
+                  updateStatus(questionID, "In Progress")
+                  props.navigation.navigate('TA Queue')
+                }}
+            />
+
+            <Button
+                title="Revert Status to: Waiting"
+                onPress={() => {
+                  // deleteQuestion(questionID)
+                  updateStatus(questionID, "Waiting...")
                   props.navigation.navigate('TA Queue')
                 }}
             />
@@ -69,5 +87,5 @@ const styles = StyleSheet.create({
     }
   });
 
-export default DeleteQuestionScreen;
+export default TaManagementScreen;
 
