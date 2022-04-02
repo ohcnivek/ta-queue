@@ -17,6 +17,7 @@ function TaManagementScreen(props, {navigation}) {
                   deleteQuestion(questionID)
                   props.navigation.navigate('TA Queue')
                 }}
+                style={{marginBottom: "2%"}}
             />
             <Button
                 title="Set Status to: In Progress"
@@ -25,6 +26,7 @@ function TaManagementScreen(props, {navigation}) {
                   updateStatus(questionID, "In Progress")
                   props.navigation.navigate('TA Queue')
                 }}
+                style={{marginBottom: "2%"}}
             />
 
             <Button
@@ -34,6 +36,7 @@ function TaManagementScreen(props, {navigation}) {
                   updateStatus(questionID, "Waiting...")
                   props.navigation.navigate('TA Queue')
                 }}
+                style={{marginBottom: "2%"}}
             />
         </View>
     );
