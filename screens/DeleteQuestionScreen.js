@@ -6,13 +6,10 @@ import {deleteQuestion} from '../data/firebase'
 
 
 function DeleteQuestionScreen(props, {navigation}) {
-    // const [nameUserText, setNameUserText] = useState("");
     const questionID = props.route.params.docID; 
 
     return (
-        <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start' }}>
-            {/* <Input placeholder='Name' onChangeText={(text) => setNameUserText(text)}/>
-            <Input placeholder='Reason to join'/> */}
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Button
                 title="Delete Question"
                 onPress={() => {

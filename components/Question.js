@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet} from 'react-native';
+import { View, StyleSheet, Alert} from 'react-native';
 import { Button, ButtonGroup, withTheme, Text } from 'react-native-elements';
 import JoinQuestionScreen from '../screens/JoinQuestionScreen';
 
@@ -14,10 +14,16 @@ class Question extends Component {
       
       <Button
           onPress= {() => {
-            if (this.props.isStudent) {
-              this.props.navigation.navigate('Join Question', {docID: this.props.docID})
+            if (this.props.privateBool) {
+              //  its private
+              Alert.alert("Can't join a private question!")
+
             } else {
-              this.props.navigation.navigate('Delete Question', {docID: this.props.docID})
+              if (this.props.isStudent) {
+                this.props.navigation.navigate('Join Question', {docID: this.props.docID})
+              } else {
+                this.props.navigation.navigate('Delete Question', {docID: this.props.docID})
+              }
             }
           }}
           title={
@@ -27,6 +33,7 @@ class Question extends Component {
               desc={this.props.desc}
               time={this.props.time}
               status={this.props.status}
+              privateBool={this.props.privateBool}
               groupMem={this.props.groupMem.join(', ')}
               />
             }
@@ -55,6 +62,9 @@ const CustomTitle = (props) => {
   const time = props.time;
   const status = props.status;
   const groupMem = props.groupMem;
+  const privateBool = props.privateBool;
+
+  const publicOrPrivate = privateBool? "private" : "public"
   return (
     <View style= {{ flexDirection: 'row'}}>
       <View style={{ flex: 2, flexDirection: 'column' }}>
@@ -73,6 +83,10 @@ const CustomTitle = (props) => {
         <Text style={{ fontWeight: 'bold', fontSize: 14 }}>{time}</Text>
         <Text style={{ fontStyle: 'italic', fontSize: 12 }}>
           {status}
+          
+        </Text>
+        <Text style={{ fontStyle: 'italic', fontSize: 12, fontWeight: 'bold' }}>
+          {publicOrPrivate}
         </Text>
       </View>
 

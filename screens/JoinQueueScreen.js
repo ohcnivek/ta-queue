@@ -26,41 +26,64 @@ function JoinQueueScreen(props, {navigation}) {
               <CheckBox
                 title="In-Person"
                 checked={checkedInPerson}
-                onPress={() => toggleCheckedInPerson(!checkedInPerson)}
+                onPress={() => {
+                  if (checkedInPerson === false && checkedVirtual === false) {
+                    toggleCheckedInPerson(!checkedInPerson)
+                  } else {
+                    toggleCheckedInPerson(!checkedInPerson)
+                    toggleCheckedVirtual(!checkedVirtual)
+                  }
+                }}
                 /> 
               <CheckBox
                 title="Virtual"
                 checked={checkedVirtual}
-                onPress={() => toggleCheckedVirtual(!checkedVirtual)}
+                onPress={() => {
+                  if (checkedInPerson === false && checkedVirtual === false) {
+                    toggleCheckedVirtual(!checkedVirtual)
+                  } else {
+                    toggleCheckedInPerson(!checkedInPerson)
+                    toggleCheckedVirtual(!checkedVirtual)
+                  }
+                }}
               /> 
             </View>
 
-            <Input placeholder='Meeting Link for Virtual Office Hours'/>
+            <Input placeholder='Meeting Link for Virtual Office Hours' onChangeText={(text) => meetingLinkUserText(text)}/>
             <Text style={{ fontSize: 18 }}>Private or Public?</Text>
             <View style={{flexDirection: 'row', marginLeft: "1%"}}>
               <CheckBox
                 title="Public"
                 checked={checkedPublic}
-                onPress={() => toggleCheckedPublic(!checkedPublic)}
+                onPress={() => {
+                  if (checkedPublic === false && checkedPrivate === false) {
+                    toggleCheckedPublic(!checkedPublic)
+                  } else {
+                    toggleCheckedPublic(!checkedPublic)
+                    toggleCheckedPrivate(!checkedPrivate)
+                  }
+                }}
               /> 
               <CheckBox
                 title="Private"
                 checked={checkedPrivate}
-                onPress={() => toggleCheckedPrivate(!checkedPrivate)}
+                onPress={() => {
+                  if (checkedPublic === false && checkedPrivate === false) {
+                    toggleCheckedPrivate(!checkedPrivate)
+                  } else {
+                    toggleCheckedPublic(!checkedPublic)
+                    toggleCheckedPrivate(!checkedPrivate)
+                  }
+                }}
               /> 
             </View>
             
             <Button
-                title="Join Queue"
-                onPress={() => {
-                  post(descriptionUserText, [], nameUserText, checkedPrivate, questionUserText, "test");
-                  props.navigation.navigate('Queue')
-                }
-                }
-
-                  // 
-                
-                
+              title="Join Queue"
+              onPress={() => {
+                post(descriptionUserText, [], nameUserText, checkedPrivate, questionUserText, "In Progress.");
+                props.navigation.navigate('Queue')
+              }}
             />
         </View>
     );
