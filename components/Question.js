@@ -14,19 +14,18 @@ class Question extends Component {
       
       <Button
           onPress= {() => {
-            if (this.props.privateBool && this.props.isStudent) {
+            if (this.props.privateBool && this.props.isStudent || this.props.status === "In Progress" && this.props.isStudent) {
               //  its private
-              Alert.alert("Can't join a private question!")
-
-            } else {
-              if (this.props.status === "In Progress") {
-                Alert.alert("Can't join a question that's already in progress!")
+              if (this.props.privateBool) {
+                Alert.alert("Can't join a private question!")
               } else {
-                if (this.props.isStudent) {
-                  this.props.navigation.navigate('Join Question', {docID: this.props.docID})
-                } else {
-                  this.props.navigation.navigate('Manage Queue', {docID: this.props.docID})
-                }
+                Alert.alert("Can't join a question that's already in progress!")
+              }
+            } else {
+              if (this.props.isStudent) {
+                this.props.navigation.navigate('Join Question', {docID: this.props.docID})
+              } else {
+                this.props.navigation.navigate('Manage Queue', {docID: this.props.docID})
               }
             }
           }}
