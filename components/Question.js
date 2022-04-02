@@ -19,10 +19,14 @@ class Question extends Component {
               Alert.alert("Can't join a private question!")
 
             } else {
-              if (this.props.isStudent) {
-                this.props.navigation.navigate('Join Question', {docID: this.props.docID})
+              if (this.props.status === "In Progress") {
+                Alert.alert("Can't join a question that's already in progress!")
               } else {
-                this.props.navigation.navigate('Manage Queue', {docID: this.props.docID})
+                if (this.props.isStudent) {
+                  this.props.navigation.navigate('Join Question', {docID: this.props.docID})
+                } else {
+                  this.props.navigation.navigate('Manage Queue', {docID: this.props.docID})
+                }
               }
             }
           }}
@@ -42,7 +46,7 @@ class Question extends Component {
             borderWidth: 0,
             borderColor: 'transparent',
             borderRadius: 20,
-            backgroundColor: '#fcead7',
+            backgroundColor: this.props.status === 'Waiting...' ? '#fcead7': '#FF5733',
           }}
           containerStyle={{
             width: "90%",
