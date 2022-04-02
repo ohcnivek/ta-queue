@@ -22,28 +22,34 @@ function JoinQueueScreen(props, {navigation}) {
             <Input placeholder='Description'  onChangeText={(text) => setDescriptionUserText(text)}/>
 
             <Text style={{ fontSize: 18 }}>In-Person or Virtual?</Text>
-            <CheckBox
-              title="In-Person"
-              checked={checkedInPerson}
-              onPress={() => toggleCheckedInPerson(!checkedInPerson)}
+            <View style={{flexDirection: 'row', marginLeft: "1%"}}>
+              <CheckBox
+                title="In-Person"
+                checked={checkedInPerson}
+                onPress={() => toggleCheckedInPerson(!checkedInPerson)}
+                /> 
+              <CheckBox
+                title="Virtual"
+                checked={checkedVirtual}
+                onPress={() => toggleCheckedVirtual(!checkedVirtual)}
               /> 
-            <CheckBox
-            title="Virtual"
-            checked={checkedVirtual}
-            onPress={() => toggleCheckedVirtual(!checkedVirtual)}
-              /> 
+            </View>
+
             <Input placeholder='Meeting Link for Virtual Office Hours'/>
             <Text style={{ fontSize: 18 }}>Private or Public?</Text>
-            <CheckBox
-              title="Private"
-              checked={checkedPrivate}
-              onPress={() => toggleCheckedPrivate(!checkedPrivate)}
+            <View style={{flexDirection: 'row', marginLeft: "1%"}}>
+              <CheckBox
+                title="Public"
+                checked={checkedPublic}
+                onPress={() => toggleCheckedPublic(!checkedPublic)}
               /> 
-            <CheckBox
-            title="Public"
-            checked={checkedPublic}
-            onPress={() => toggleCheckedPublic(!checkedPublic)}
+              <CheckBox
+                title="Private"
+                checked={checkedPrivate}
+                onPress={() => toggleCheckedPrivate(!checkedPrivate)}
               /> 
+            </View>
+            
             <Button
                 title="Join Queue"
                 onPress={() => {
