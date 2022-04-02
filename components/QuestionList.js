@@ -29,7 +29,7 @@ const QuestionList = (props) => {
             <ScrollView>
                 {questions.length > 0 ? (questions.map(Entry => {
                         return <Question style = {{flex:2}}
-                            press = {props.press}
+                            navigation = {props.navigation}
                             name= {Entry.data.name}
                             question = {Entry.data.question}
                             desc= {Entry.data.desc}

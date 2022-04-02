@@ -22,7 +22,7 @@ export default function App({ navigation }) {
         <Stack.Screen name="TA Queue" component={TAQueueScreen} />
         <Stack.Screen name="Queue" component={QueueScreen} />
         <Stack.Screen name="Join Queue" component={JoinQueueScreen} />
-        <Stack.Screen name="Join Question" component={JoinQuestionScreen} />
+        <Stack.Screen name="Join Question" component={JoinQuestionScreen} initialParams={{'key':'value'}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -12,7 +12,13 @@ function QueueScreen(props) {
           alignItems: "center",
         }}
       >
-          <QuestionList press={() => props.navigation.navigate('Join Question')}></QuestionList>
+          <QuestionList 
+          // press={(docID) => {
+          //       props.navigation.navigate('Join Question', {docRefID: docID})
+          //   }}
+            navigation = {props.navigation}
+            >
+          </QuestionList>
           
           <Button 
               style = {styles.joinQueueButton}
