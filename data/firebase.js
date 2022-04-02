@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, doc, deleteDoc, onSnapshot, collection, addDoc, updateDoc, FieldValue, arrayUnion, update } from "firebase/firestore";
+import { getFirestore, doc, deleteDoc, onSnapshot, collection, addDoc, updateDoc, FieldValue, arrayUnion, update, serverTimestamp } from "firebase/firestore";
 import {EXPO_APP_API_KEY,EXPO_APP_PROJECT } from '@env'
 
 const firebaseConfig = {
@@ -24,6 +24,7 @@ async function post(desc, groupMem, name, privateBool, question, status) {
         privateBool: privateBool , 
         question: question , 
         status: status,
+        timeStamp: serverTimestamp()
       });
 
       console.log("Success! Document written with ID: ", docRef.id);

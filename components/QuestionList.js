@@ -1,4 +1,4 @@
-import { query, onSnapshot, collection,  deleteDoc, doc, getDoc, setDoc  } from "firebase/firestore";
+import { query, onSnapshot, collection,  deleteDoc, doc, getDoc, setDoc , orderBy } from "firebase/firestore";
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView} from "react-native";
 import Question from './Question';
@@ -7,19 +7,19 @@ import { db } from "../data/firebase";
 
 const QuestionList = (props) => {
     const [questions, setQuestions] = useState([]);
-    const q = query(collection(db, "queue-questions"));
+    const q = query(collection(db, "queue-questions"), orderBy('timeStamp'));
 
     useEffect( 
-        () => onSnapshot(q, (querySnapshot) => {
-            // setQuestions()
-            const realTimeQuestions = [];
-            querySnapshot.forEach(doc => {
-                realTimeQuestions.push({data: doc.data(), docID: doc.id});
-                console.log(doc.id)
-                console.log(doc.data())
-            });
+        () =>
+            onSnapshot(q, (querySnapshot) => {
+                // setQuestions()
+                const realTimeQuestions = [];
+                querySnapshot.forEach(doc => {
+                    realTimeQuestions.push({data: doc.data(), docID: doc.id});
+                    console.log(doc.id)
+                    console.log(doc.data())
+                });
             setQuestions(realTimeQuestions);
-            
         })
 
     , []); // only will call when question is empty 
