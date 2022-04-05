@@ -3,7 +3,7 @@ import { View, Text, StyleSheet} from "react-native";
 import {Button} from 'react-native-elements';
 
 
-function TAorStudentScreen(props, {navigation}) {
+function LoginorSignUpScreen(props, {navigation}) {
     return (
       <View style={{
           flex: 1,
@@ -11,7 +11,6 @@ function TAorStudentScreen(props, {navigation}) {
           alignItems: "center",
         }}
       >
-          <Text style={{ fontSize: 18 }}>Are you a student or a TA?</Text>
           
           <Button 
               buttonStyle={{
@@ -25,8 +24,8 @@ function TAorStudentScreen(props, {navigation}) {
                 width: 200,
                 marginVertical: 10,
               }}
-              title= "Student"
-              onPress={() => props.navigation.navigate('Queue')}>
+              title= "Sign Up"
+              onPress={() => props.navigation.navigate('Sign Up')}>
           </Button>
 
           <Button 
@@ -40,7 +39,22 @@ function TAorStudentScreen(props, {navigation}) {
                 width: 200,
                 marginVertical: 10,
               }}
-              title= "TA"
+              title= "Login"
+              onPress={() => {props.navigation.navigate('Login')}}>
+          </Button>
+
+          <Button 
+              buttonStyle={{
+                backgroundColor: 'rgba(90, 154, 230, 1)',
+                borderRadius: 5,
+              }}
+              containerStyle={{
+                marginHorizontal: 50,
+                height: 50,
+                width: 200,
+                marginVertical: 10,
+              }}
+              title= "tmp button for ta"
               onPress={() => props.navigation.navigate('TA Queue')}>
           </Button>
       </View>
@@ -93,4 +107,4 @@ const styles = StyleSheet.create({
 
 
 
-export default TAorStudentScreen;
+export default LoginorSignUpScreen;

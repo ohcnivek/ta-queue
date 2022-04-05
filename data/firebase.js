@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore, doc, deleteDoc, onSnapshot, collection, addDoc, updateDoc, FieldValue, arrayUnion, update, serverTimestamp } from "firebase/firestore";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import {EXPO_APP_API_KEY,EXPO_APP_PROJECT } from '@env'
 
 const firebaseConfig = {
@@ -14,6 +15,7 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
+export const auth = getAuth(app);
 const COLLECTION = "queue-questions"
 
 async function post(desc, groupMem, name, privateBool, question, status) {
@@ -49,4 +51,9 @@ async function updateStatus(docRefID, status) {
   });
 }
 
-export {post, addGroupMem, deleteQuestion, updateStatus}
+export {
+   post,
+    addGroupMem, 
+    deleteQuestion, 
+    updateStatus, 
+    }

@@ -6,25 +6,30 @@ import {Button, Input} from 'react-native-elements';
 //import { createStackNavigator, createAppContainer } from 'react-navigation';  
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import TAorStudentScreen from './screens/TAorStudentScreen';
 import TAQueueScreen from './screens/TAQueueScreen';
 import QueueScreen from './screens/QueueScreen';
 import JoinQueueScreen from './screens/JoinQueueScreen';
 import JoinQuestionScreen from './screens/JoinQuestionScreen';
 import TaManagementScreen from './screens/TaManagementScreen';
+import SignUpScreen from './screens/SignUpScreen';
+import LoginScreen from './screens/LoginScreen';
+import LoginorSignUpScreen from './screens/LoginorSignUpScreen';
 
 const Stack = createNativeStackNavigator();
+console.disableYellowBox = true; 
 
 export default function App({ navigation }) {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={TAorStudentScreen} />
+        <Stack.Screen name="Home" component={LoginorSignUpScreen} />
         <Stack.Screen name="TA Queue" component={TAQueueScreen} />
         <Stack.Screen name="Queue" component={QueueScreen} />
         <Stack.Screen name="Join Queue" component={JoinQueueScreen} />
         <Stack.Screen name="Join Question" component={JoinQuestionScreen}/>
         <Stack.Screen name="Manage Queue" component={TaManagementScreen}/>
+        <Stack.Screen name="Sign Up" component={SignUpScreen}/>
+        <Stack.Screen name="Login" component={LoginScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
