@@ -7,12 +7,12 @@ import {deleteQuestion, updateStatus} from '../data/firebase'
 
 function TaManagementScreen(props, {navigation}) {
     const questionID = props.route.params.docID; 
-    
+    const meetingLink = props.route.params.meetingLink; 
 
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Button
-                title="Revert Status to: Waiting"
+                title={meetingLink}
                 // onPress={() => {
                 //   // deleteQuestion(questionID)
                 //   updateStatus(questionID, "Waiting...")

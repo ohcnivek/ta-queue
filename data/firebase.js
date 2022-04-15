@@ -25,6 +25,8 @@ async function post(desc, groupMem, isVirtual, meetingLink, name, privateBool, q
         desc: desc,
         groupMem: groupMem,
         name: name , 
+        isVirtual: isVirtual,
+        meetingLink: meetingLink,
         privateBool: privateBool , 
         question: question , 
         status: status,
