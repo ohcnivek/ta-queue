@@ -13,6 +13,8 @@ const firebaseConfig = {
     measurementId: "G-PZ5WDFV2P9"
   };
 
+console.log(EXPO_APP_API_KEY)
+
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const auth = getAuth(app);

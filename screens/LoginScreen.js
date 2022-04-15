@@ -32,7 +32,7 @@ function LoginScreen(props, {navigation}) {
     return <View style={{ flex: 1, justifyContent: "center",alignItems: "center",}}>
                 <Text>Login</Text>
                 <Input placeholder='Email' onChangeText={(text) => setUsername(text)}/>
-                <Input placeholder='Password' onChangeText={(text) => setPassword(text)}/>
+                <Input placeholder='Password' type="hidden" onChangeText={(text) => setPassword(text)}/>
                 <Text> *** Need to be greater than 6 characters for the password *** </Text>
 
                 <Button
