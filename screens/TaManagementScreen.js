@@ -12,6 +12,15 @@ function TaManagementScreen(props, {navigation}) {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Button
+                title="Revert Status to: Waiting"
+                // onPress={() => {
+                //   // deleteQuestion(questionID)
+                //   updateStatus(questionID, "Waiting...")
+                //   props.navigation.navigate('TA Queue')
+                // }}
+                style={{marginBottom: "2%"}}
+            />
+            <Button
                 title="Delete/ Done with Question "
                 onPress={() => {
                   deleteQuestion(questionID)
