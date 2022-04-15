@@ -3,6 +3,7 @@ import { View, Text, StyleSheet} from "react-native";
 import QuestionList from '../components/QuestionList';
 import {Button, Input, CheckBox} from 'react-native-elements';
 import {deleteQuestion, updateStatus} from '../data/firebase'
+import Clipboard from '@react-native-clipboard/clipboard';
 
 
 function TaManagementScreen(props, {navigation}) {
@@ -13,11 +14,9 @@ function TaManagementScreen(props, {navigation}) {
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Button
                 title={meetingLink}
-                // onPress={() => {
-                //   // deleteQuestion(questionID)
-                //   updateStatus(questionID, "Waiting...")
-                //   props.navigation.navigate('TA Queue')
-                // }}
+                onPress={() => {
+                  Clipboard.setString(meetingLink);
+                }}
                 style={{marginBottom: "2%"}}
             />
             <Button
