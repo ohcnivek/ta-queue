@@ -32,6 +32,8 @@ const QuestionList = (props) => {
                             isStudent = {props.isStudent}
                             navigation = {props.navigation}
                             name= {Entry.data.name}
+                            isVirtual = {Entry.data.isVirtual}
+                            meetingLink = {Entry.data.meetingLink}
                             question = {Entry.data.question}
                             desc= {Entry.data.desc}
                             status= {Entry.data.status}

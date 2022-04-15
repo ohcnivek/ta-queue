@@ -7,10 +7,21 @@ import {deleteQuestion, updateStatus} from '../data/firebase'
 
 function TaManagementScreen(props, {navigation}) {
     const questionID = props.route.params.docID; 
+    //const meetingLink = props.route.params.meetingLink;
+    // const isVirtual = props.route.params.data.isVirtual;
+    // const desc = props.route.params.data.desc;
     
-
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Button
+                title= {questionID}
+                onPress={() => {
+                  // // deleteQuestion(questionID)
+                  // updateStatus(questionID, "Waiting...")
+                  // props.navigation.navigate('TA Queue')
+                }}
+                style={{marginBottom: "2%"}}
+            />
             <Button
                 title="Delete/ Done with Question "
                 onPress={() => {
