@@ -20,11 +20,13 @@ export const db = getFirestore(app);
 export const auth = getAuth(app);
 const COLLECTION = "queue-questions"
 
-async function post(desc, groupMem, name, privateBool, question, status) {
+async function post(desc, groupMem, isVirtual, meetingLink, name, privateBool, question, status) {
     const docRef = await addDoc(collection(db, COLLECTION), {
         desc: desc,
         groupMem: groupMem,
         name: name , 
+        isVirtual: isVirtual,
+        meetingLink: meetingLink,
         privateBool: privateBool , 
         question: question , 
         status: status,
