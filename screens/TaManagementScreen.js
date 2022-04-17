@@ -3,22 +3,14 @@ import { View, Text, StyleSheet} from "react-native";
 import QuestionList from '../components/QuestionList';
 import {Button, Input, CheckBox} from 'react-native-elements';
 import {deleteQuestion, updateStatus} from '../data/firebase'
-import Clipboard from '@react-native-clipboard/clipboard';
 
 
 function TaManagementScreen(props, {navigation}) {
     const questionID = props.route.params.docID; 
-    const meetingLink = props.route.params.meetingLink; 
+    
 
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Button
-                title={meetingLink}
-                onPress={() => {
-                  Clipboard.setString(meetingLink);
-                }}
-                style={{marginBottom: "2%"}}
-            />
             <Button
                 title="Delete/ Done with Question "
                 onPress={() => {

@@ -34,7 +34,6 @@ const QuestionList = (props) => {
                             name= {Entry.data.name}
                             question = {Entry.data.question}
                             desc= {Entry.data.desc}
-                            meetingLink = {Entry.data.meetingLink}
                             status= {Entry.data.status}
                             time="4 minutes left"
                             privateBool= {Entry.data.privateBool}

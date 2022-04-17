@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "@react-native-clipboard/clipboard": "^1.8.5",
     "@react-navigation/native-stack": "^6.5.0",
     "axios": "^0.26.0",
     "dotenv": "^16.0.0",
