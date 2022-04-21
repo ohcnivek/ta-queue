@@ -2,6 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore, doc, deleteDoc, onSnapshot, collection, addDoc, updateDoc, FieldValue, arrayUnion, update, serverTimestamp } from "firebase/firestore";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import {EXPO_APP_API_KEY,EXPO_APP_PROJECT } from '@env'
+import {pushToken} from './notifications';
 
 const firebaseConfig = {
     apiKey: EXPO_APP_API_KEY,
@@ -13,7 +14,7 @@ const firebaseConfig = {
     measurementId: "G-PZ5WDFV2P9"
   };
 
-console.log(EXPO_APP_API_KEY)
+console.log(EXPO_APP_API_KEY);
 
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
@@ -28,7 +29,8 @@ async function post(desc, groupMem, name, privateBool, question, status) {
         privateBool: privateBool , 
         question: question , 
         status: status,
-        timeStamp: serverTimestamp()
+        timeStamp: serverTimestamp(),
+        pushTokens: [pushToken]
       });
 
       console.log("Success! Document written with ID: ", docRef.id);
@@ -37,7 +39,8 @@ async function post(desc, groupMem, name, privateBool, question, status) {
 async function addGroupMem(docRefID, memberToAdd) {
   const docRef = doc(db, COLLECTION, docRefID); 
   const unionRes = await updateDoc(docRef, {
-    groupMem: arrayUnion(memberToAdd)
+    groupMem: arrayUnion(memberToAdd),
+    pushTokens: arrayUnion(pushToken)
   });
 }
 

@@ -3,11 +3,11 @@ import { View, Text, StyleSheet} from "react-native";
 import QuestionList from '../components/QuestionList';
 import {Button, Input, CheckBox} from 'react-native-elements';
 import {deleteQuestion, updateStatus} from '../data/firebase'
-
+import {sendPushNotification} from '../data/notifications'
 
 function TaManagementScreen(props, {navigation}) {
     const questionID = props.route.params.docID; 
-    
+    const pushTokens = props.route.params.pushTokens;
 
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -24,6 +24,9 @@ function TaManagementScreen(props, {navigation}) {
                 onPress={() => {
                   // deleteQuestion(questionID)
                   updateStatus(questionID, "In Progress")
+                  pushTokens.forEach((entry) => {
+                    sendPushNotification(entry);
+                  })
                   props.navigation.navigate('TA Queue')
                 }}
                 style={{marginBottom: "2%"}}

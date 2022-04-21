@@ -4,6 +4,8 @@
     "axios": "^0.26.0",
     "dotenv": "^16.0.0",
     "expo": "^44.0.0",
+    "expo-device": "~4.1.0",
+    "expo-notifications": "~0.14.0",
     "firebase": "^9.6.10",
     "react": "17.0.1",
     "react-dom": "17.0.1",
