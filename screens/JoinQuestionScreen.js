@@ -2,22 +2,27 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet} from "react-native";
 import QuestionList from '../components/QuestionList';
 import {Button, Input, CheckBox} from 'react-native-elements';
-import {addGroupMem} from '../data/firebase'
+import {addGroupMem, join_request} from '../data/firebase'
 
 
 function JoinQuestionScreen(props, {navigation}) {
     const [nameUserText, setNameUserText] = useState("");
+    const [reasonToJoinText, setReasonToJoinText] = useState();
     const questionID = props.route.params.docID;
     const uid = props.route.params.uid;
 
     return (
         <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start' }}>
             <Input placeholder='Name' onChangeText={(text) => setNameUserText(text)}/>
-            <Input placeholder='Reason to join'/>
+            <Input placeholder='Reason to join' onChangeText={(text) => setReasonToJoinText(text)}/>
             <Button
                 title="Join Question"
+                // onPress={() => {
+                //   addGroupMem(questionID, nameUserText, uid)
+                //   props.navigation.navigate('Queue', {uid: uid})
+                // }}
                 onPress={() => {
-                  addGroupMem(questionID, nameUserText, uid)
+                  join_request(questionID, uid, nameUserText, reasonToJoinText)
                   props.navigation.navigate('Queue', {uid: uid})
                 }}
             />

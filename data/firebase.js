@@ -2,6 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore, doc, getDoc, deleteDoc, onSnapshot, collection, addDoc, updateDoc, FieldValue, arrayUnion, update, serverTimestamp } from "firebase/firestore";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import {EXPO_APP_API_KEY,EXPO_APP_PROJECT } from '@env'
+import { Alert } from 'react-native';
 
 const firebaseConfig = {
     apiKey: EXPO_APP_API_KEY,
@@ -37,6 +38,29 @@ async function post(desc, groupMem, isVirtual, meetingLink, name, privateBool, q
       console.log("Success! Document written with ID: ", docRef.id);
 }
 
+async function join_request(docRefID, uid, name, reasonToJoin) {
+  const docRef = await addDoc(collection(db, COLLECTION, docRefID, "joinRequests"),
+  {
+    uid: uid,
+    name: name,
+    reasonToJoin: reasonToJoin,
+  });
+    
+    console.log("Success! Document written with ID: ", docRef.id);
+}
+
+async function accept_join_request(questionID, uidToAdd, memberToAdd, requestID) {
+  const docRef = doc(db, COLLECTION, questionID);
+  const unionRes = await updateDoc(docRef, {
+    groupMem: arrayUnion(memberToAdd)
+  });
+  const unionResUID = await updateDoc(docRef, {
+    uidArray: arrayUnion(uidToAdd)
+  });
+  deleteRequest(questionID, requestID)
+  console.log("Success! User request has been  ", docRef.id);
+}
+
 async function addGroupMem(docRefID, memberToAdd, uidToAdd) {
   const docRef = doc(db, COLLECTION, docRefID); 
   const docSnap = await getDoc(docRef);
@@ -58,14 +82,18 @@ async function addGroupMem(docRefID, memberToAdd, uidToAdd) {
     // doc.data() will be undefined in this case
     console.log("No such document!");
   }
+}
 
-  
+async function deleteRequest(questionID, requestID) {
+  const docRef = doc(db, COLLECTION, questionID, "joinRequests", requestID); 
+  const deleted = await deleteDoc(docRef);
 }
 
 async function deleteQuestion(docRefID) {
   const docRef = doc(db, COLLECTION, docRefID); 
   const deleted = await deleteDoc(docRef);
 }
+
 
 async function updateStatus(docRefID, status) {
   const docRef = doc(db, COLLECTION, docRefID); 
@@ -79,4 +107,7 @@ export {
     addGroupMem, 
     deleteQuestion, 
     updateStatus, 
+    join_request,
+    accept_join_request,
+    deleteRequest,
     }

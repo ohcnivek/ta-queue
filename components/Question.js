@@ -20,7 +20,10 @@ class Question extends Component {
             } else {
               if (this.props.isStudent) {
                 console.log(this.props.uidArray)
-                if (this.props.uidArray.includes(this.props.uid)) {
+                if (this.props.uid == this.props.uidArray[0]) {
+                  this.props.navigation.navigate('Requests Screen', {docID: this.props.docID, meetingLink: this.props.meetingLink})
+                }
+                else if (this.props.uidArray.includes(this.props.uid)) {
                   // student owns or has already joined question
                   this.props.navigation.navigate('Meeting Link', {docID: this.props.docID, meetingLink: this.props.meetingLink})
                 } else {
