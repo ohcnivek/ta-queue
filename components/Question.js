@@ -33,7 +33,7 @@ class Question extends Component {
                   this.props.navigation.navigate('Join Question', {docID: this.props.docID, uid: this.props.uid})
                 }
               } else {
-                this.props.navigation.navigate('Manage Queue', {docID: this.props.docID})
+                this.props.navigation.navigate('Manage Queue', {docID: this.props.docID, meetingLink: this.props.meetingLink})
               }
             }
           }}
@@ -45,6 +45,7 @@ class Question extends Component {
               time={this.props.time}
               status={this.props.status}
               privateBool={this.props.privateBool}
+              meetingLink={this.props.meetingLink}
               groupMem={this.props.groupMem.join(', ')}
               />
             }
@@ -73,6 +74,7 @@ const CustomTitle = (props) => {
   const time = props.time;
   const status = props.status;
   const groupMem = props.groupMem;
+  const meetingLink = props.meetingLink
   const privateBool = props.privateBool;
 
   const publicOrPrivate = privateBool? "private" : "public"
