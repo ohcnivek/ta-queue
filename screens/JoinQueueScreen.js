@@ -81,7 +81,7 @@ function JoinQueueScreen(props, {navigation}) {
             <Button
               title="Join Queue"
               onPress={() => {
-                post(descriptionUserText, [], nameUserText, checkedPrivate, questionUserText, uid, "Waiting...");
+                post(descriptionUserText, [], checkedVirtual, meetingLinkUserText, nameUserText, checkedPrivate, questionUserText, uid, "Waiting...");
                 props.navigation.navigate('Queue', {uid: uid})
               }}
             />

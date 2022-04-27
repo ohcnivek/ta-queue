@@ -1,27 +1,16 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Alert} from "react-native";
+import { View, Text, StyleSheet} from "react-native";
 import QuestionList from '../components/QuestionList';
 import {Button, Input, CheckBox} from 'react-native-elements';
 import {deleteQuestion, updateStatus} from '../data/firebase'
-import * as Clipboard from 'expo-clipboard';
 
 
-function TaManagementScreen(props, {navigation}) {
+function MeetingLinkScreen(props, {navigation}) {
     const questionID = props.route.params.docID; 
-    const meetingLink = props.route.params.meetingLink; 
+    
 
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Button
-                title="Copy Meeting Link"
-                onPress={() => {
-                  Alert.alert('Meeting Link Copied to Clipboard', meetingLink, [
-                    {text: 'OK', onPress: () => console.log('OK Pressed') },
-                  ]);
-                  Clipboard.setString(meetingLink);
-                }}
-                style={{marginBottom: "2%"}}
-            />
             <Button
                 title="Delete/ Done with Question "
                 onPress={() => {
@@ -101,5 +90,5 @@ const styles = StyleSheet.create({
     }
   });
 
-export default TaManagementScreen;
+export default MeetingLinkScreen;
 
