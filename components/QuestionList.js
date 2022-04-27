@@ -27,7 +27,7 @@ const QuestionList = (props) => {
     return (  
         <View style= {{flexDirection: 'column', flex: 14}}>
             <ScrollView>
-                {questions.length > 0 ? (questions.map(Entry => {
+                {questions.length > 0 ? (questions.map((Entry, index) => {
                         return <Question style = {{flex:2}}
                             isStudent = {props.isStudent}
                             navigation = {props.navigation}
@@ -35,7 +35,7 @@ const QuestionList = (props) => {
                             question = {Entry.data.question}
                             desc= {Entry.data.desc}
                             status= {Entry.data.status}
-                            time="4 minutes left"
+                            time= {index*15 + " minutes left"}
                             privateBool= {Entry.data.privateBool}
                             groupMem = {Entry.data.privateBool ? [] : Entry.data.groupMem}
                             docID = {Entry.docID}
