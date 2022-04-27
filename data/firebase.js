@@ -2,7 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore, doc, getDoc, deleteDoc, onSnapshot, collection, addDoc, updateDoc, FieldValue, arrayUnion, update, serverTimestamp } from "firebase/firestore";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import {EXPO_APP_API_KEY,EXPO_APP_PROJECT } from '@env'
-import { Alert } from 'react-native';
+import {pushToken} from './notifications';
 
 const firebaseConfig = {
     apiKey: EXPO_APP_API_KEY,
@@ -14,7 +14,7 @@ const firebaseConfig = {
     measurementId: "G-PZ5WDFV2P9"
   };
 
-console.log(EXPO_APP_API_KEY)
+console.log(EXPO_APP_API_KEY);
 
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
@@ -32,7 +32,8 @@ async function post(desc, groupMem, isVirtual, meetingLink, name, privateBool, q
         privateBool: privateBool , 
         question: question , 
         status: status,
-        timeStamp: serverTimestamp()
+        timeStamp: serverTimestamp(),
+        pushTokens: [pushToken]
       });
 
       console.log("Success! Document written with ID: ", docRef.id);
@@ -52,7 +53,8 @@ async function join_request(docRefID, uid, name, reasonToJoin) {
 async function accept_join_request(questionID, uidToAdd, memberToAdd, requestID) {
   const docRef = doc(db, COLLECTION, questionID);
   const unionRes = await updateDoc(docRef, {
-    groupMem: arrayUnion(memberToAdd)
+    groupMem: arrayUnion(memberToAdd),
+    pushTokens: arrayUnion(pushToken)
   });
   const unionResUID = await updateDoc(docRef, {
     uidArray: arrayUnion(uidToAdd)

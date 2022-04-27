@@ -4,6 +4,7 @@ import QuestionList from '../components/QuestionList';
 import {Button, Input, CheckBox} from 'react-native-elements';
 import {deleteQuestion, updateStatus} from '../data/firebase'
 import * as Clipboard from 'expo-clipboard';
+import {sendPushNotification} from '../data/notifications'
 
 
 function TaManagementScreen(props, {navigation}) {
@@ -35,6 +36,9 @@ function TaManagementScreen(props, {navigation}) {
                 onPress={() => {
                   // deleteQuestion(questionID)
                   updateStatus(questionID, "In Progress")
+                  pushTokens.forEach((entry) => {
+                    sendPushNotification(entry);
+                  })
                   props.navigation.navigate('TA Queue')
                 }}
                 style={{marginBottom: "2%"}}
