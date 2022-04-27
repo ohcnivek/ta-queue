@@ -25,8 +25,10 @@ function QueueScreen(props) {
           
           <Pressable 
               style = {styles.joinQueueButton} onPress={() => props.navigation.navigate('Join Queue', {uid: props.route.params.uid})}>
-              <Text>Join Queue</Text>
+              <Text style={{ fontSize: 18, fontFamily: 'IBMPlexMono-SemiBold'}}>Join Queue</Text>
           </Pressable>
+          <Text/>
+          <Text/> 
       </View>
     );
   }
@@ -44,15 +46,6 @@ const styles = StyleSheet.create({
       paddingTop: 50,
       //marginTop: 100, margin is outside of block, padding is in
     },
-    //this is for multiple buttons in a column
-    // buttonsContainer: {
-    //   flexDirection: 'row',
-    //   flexWrap: 'wrap',
-    //   justifyContent: 'center',
-    //   alignItems: 'center',
-    //   width: '100%',
-    //   marginVertical: 20,
-    // }, 
     joinQueueButton: {
       marginRight:40,
       marginLeft:40,

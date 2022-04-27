@@ -39,6 +39,7 @@ class Question extends Component {
               desc={this.props.desc}
               time={this.props.time}
               status={this.props.status}
+              isStudent = {this.props.isStudent}
               privateBool={this.props.privateBool}
               meetingLink={this.props.meetingLink}
               groupMem={this.props.groupMem.join(', ')}
@@ -52,8 +53,8 @@ class Question extends Component {
             backgroundColor: this.props.status === 'Waiting...' ? '#FFF5ED': '#C4A484',
           }}
           containerStyle={{
-            width: "90%",
-            marginHorizontal: 50,
+            width: "100%",
+            marginHorizontal: 0,
             marginVertical: 10,
           }}
         />
@@ -69,53 +70,69 @@ const CustomTitle = (props) => {
   const time = props.time;
   const status = props.status;
   const groupMem = props.groupMem;
+  const isStudent = props.isStudent;
   const meetingLink = props.meetingLink
   const privateBool = props.privateBool;
 
   const publicOrPrivate = privateBool? "private" : "public"
-  return (
-    <View style= {{ flexDirection: 'row'}}>
-      <View style={{ flex: 2, flexDirection: 'column' }}>
-        <Text style={{ fontStyle: 'italic', fontSize: 12 }}>
-          {name + ", " + groupMem}
-        </Text>
-        <Text style={{ fontWeight: 'bold', fontSize: 18 }}>{question}</Text>
-        <Text style={{ fontStyle: 'italic', fontSize: 12 }}>
-          {desc}
-        </Text>
-      </View>
-
-
-      
-      <View style={{ flex: 1, flexDirection: 'column' }}>
-        <Text style={{ fontWeight: 'bold', fontSize: 14 }}>{time}</Text>
-        <Text style={{ fontStyle: 'italic', fontSize: 12 }}>
-          {status}
-          
-        </Text>
-        <Text style={{ fontStyle: 'italic', fontSize: 12, fontWeight: 'bold' }}>
-          {publicOrPrivate}
-        </Text>
-      </View>
-
-      
-    </View>
-  );
+  if (!privateBool || !isStudent) {
+    if (status !== 'Waiting...') {
+      return (
+        <View style= {styles.contentView}>
+          <View style={{ flexDirection: 'row' }}>
+            <View style={{ flex: 2}}>
+              <Text style={{ fontSize: 12, fontFamily: 'IBMPlexMono-SemiBoldItalic', marginBottom: 10, color: '#904E32' }}>
+                {name + ", " + groupMem}
+              </Text>
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={{ fontSize: 12, fontFamily: 'IBMPlexMono-SemiBoldItalic', marginBottom: 10, color: '#904E32'}}>
+                {status}
+              </Text>
+            </View>
+          </View>
+          <Text style={{ fontWeight: 'bold', fontSize: 18, fontFamily: 'IBMPlexMono-Regular', marginBottom: 10, color: '#904E32'}}>{question}</Text>
+            <Text style={{fontSize: 12, fontFamily: 'IBMPlexMono-SemiBoldItalic', color: '#904E32' }}>
+              {desc}
+            </Text>
+        </View>
+      );
+    } else {
+      return (
+        <View style= {styles.contentView}>
+          <View style={{ flexDirection: 'row' }}>
+            <View style={{ flex: 2}}>
+              <Text style={{ fontSize: 12, fontFamily: 'IBMPlexMono-SemiBoldItalic', marginBottom: 10, color: '#904E32' }}>
+                {name + ", " + groupMem}
+              </Text>
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={{fontSize: 12, fontFamily: 'IBMPlexMono-SemiBoldItalic', marginBottom: 10, color: '#904E32'}}> {time}</Text>
+            </View>
+          </View>
+          <Text style={{ fontWeight: 'bold', fontSize: 18, fontFamily: 'IBMPlexMono-Regular', marginBottom: 10, color: '#904E32'}}>{question}</Text>
+            <Text style={{fontSize: 12, fontFamily: 'IBMPlexMono-SemiBoldItalic', color: '#904E32' }}>
+              {desc}
+            </Text>
+        </View>
+      );
+    }
+  } else {
+      return (
+        <View>
+          <Text style={{ fontSize: 20, fontFamily: 'IBMPlexMono-SemiBoldItalic', marginTop: 10, marginBottom: 10, color: '#904E32' }}>
+            PRIVATE QUESTION
+          </Text>
+        </View>
+      );
+  }
 };
 
 const styles = StyleSheet.create({
   contentView: {
-    flex: 1,
+    alignItems: 'flex-start',
+    width: 350,
   },
-  //this is for multiple buttons in a column
-  // buttonsContainer: {
-  //   flexDirection: 'row',
-  //   flexWrap: 'wrap',
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  //   width: '100%',
-  //   marginVertical: 20,
-  // }, 
   og: {
     justifyContent: "center",
     alignItems: "center",
@@ -126,13 +143,6 @@ const styles = StyleSheet.create({
     shadowOffset: {width: -2, height: 4},
     shadowOpacity: 0.2,
     shadowRadius: 3,
-  },
-  subHeader: {
-    backgroundColor : "#FCEAD7",
-    color : "white",
-    textAlign : "center",
-    paddingVertical : 5,
-    marginBottom : 10
   }
 });
 
