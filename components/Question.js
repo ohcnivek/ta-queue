@@ -31,7 +31,7 @@ class Question extends Component {
                   this.props.navigation.navigate('Join Question', {docID: this.props.docID, uid: this.props.uid})
                 }
               } else {
-                this.props.navigation.navigate('Manage Queue', {docID: this.props.docID, pushTokens: this.props.pushTokens, meetingLink: this.props.meetingLink})
+                this.props.navigation.navigate('Manage Queue', {docID: this.props.docID, meetingLink: this.props.meetingLink})
               }
             }
           }}

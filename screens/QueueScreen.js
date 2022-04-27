@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import {Pressable, View, Text, StyleSheet} from "react-native";
 import QuestionList from '../components/QuestionList';
-import {Button, Input} from 'react-native-elements';
-import {registerForPushNotificationsAsync} from '../data/notifications';
+import {Input} from 'react-native-elements';
 
 
 function QueueScreen(props) {
-  console.log("hello")
-  registerForPushNotificationsAsync();
     return (
       <View style={{
           flex: 1,

@@ -42,7 +42,6 @@ const QuestionList = (props) => {
                             groupMem = {Entry.data.privateBool ? [] : Entry.data.groupMem}
                             uidArray = {Entry.data.privateBool ? [] : Entry.data.uidArray}
                             docID = {Entry.docID}
-                            pushTokens = {Entry.data.pushTokens}
                             >
                         </Question>
                     })) : (<Text> No posts :( </Text>)
