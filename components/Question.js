@@ -6,13 +6,9 @@ import JoinQuestionScreen from '../screens/JoinQuestionScreen';
 class Question extends Component {
   render() {
     return (
-      <View style={{
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-      }}>
+      <View style={[styles.og]}>
       
-      <Button
+      <Button 
           onPress= {() => {
             if (this.props.privateBool && this.props.isStudent || this.props.status === "In Progress" && this.props.isStudent) {
               //  its private
@@ -42,10 +38,10 @@ class Question extends Component {
             }
           titleStyle={{ fontWeight: 'bold', fontSize: 38 }}
           buttonStyle={{
-            borderWidth: 0,
-            borderColor: 'transparent',
+            borderWidth: 1,
+            borderColor: '#904E32',
             borderRadius: 20,
-            backgroundColor: this.props.status === 'Waiting...' ? '#fcead7': '#FF5733',
+            backgroundColor: this.props.status === 'Waiting...' ? '#FFF5ED': '#C4A484',
           }}
           containerStyle={{
             width: "90%",
@@ -111,6 +107,17 @@ const styles = StyleSheet.create({
   //   width: '100%',
   //   marginVertical: 20,
   // }, 
+  og: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+  },
+  shadowProp: {
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+  },
   subHeader: {
     backgroundColor : "#FCEAD7",
     color : "white",

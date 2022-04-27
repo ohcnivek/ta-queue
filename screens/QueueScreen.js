@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet} from "react-native";
+import {Pressable, View, Text, StyleSheet} from "react-native";
 import QuestionList from '../components/QuestionList';
-import {Button, Input} from 'react-native-elements';
+import {Input} from 'react-native-elements';
 
 
 function QueueScreen(props) {
@@ -10,6 +10,7 @@ function QueueScreen(props) {
           flex: 1,
           justifyContent: "center",
           alignItems: "center",
+          backgroundColor: '#FFF5ED',
         }}
       >
           <QuestionList 
@@ -21,11 +22,11 @@ function QueueScreen(props) {
             >
           </QuestionList>
           
-          <Button 
-              style = {styles.joinQueueButton}
-              title= "Join Queue"
-              onPress={() => props.navigation.navigate('Join Queue')}>
-          </Button>
+          <Pressable 
+              style = {styles.joinQueueButton} onPress={() => props.navigation.navigate('Join Queue')}>
+              <Text>Join Queue</Text>
+              
+          </Pressable>
       </View>
     );
   }
@@ -53,8 +54,14 @@ const styles = StyleSheet.create({
     //   marginVertical: 20,
     // }, 
     joinQueueButton: {
-      margin: 10,
-      backgroundColor: 'green',
+      marginRight:40,
+      marginLeft:40,
+      marginTop:10,
+      padding:10,
+      backgroundColor:'#C4A484',
+      borderRadius:10,
+      borderWidth: 1,
+      borderColor: '#fff'
     },
     textPrimary: {
       marginVertical: 20,

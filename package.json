@@ -13,6 +13,11 @@
     "react-native-screens": "^3.13.1",
     "react-native-web": "0.17.1"
   },
+  "rnpm": {
+    "assets": [
+    "./assets/fonts/"
+    ]
+  },
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "babel-plugin-transform-inline-environment-variables": "^0.4.3"

@@ -25,7 +25,7 @@ const QuestionList = (props) => {
     , []); // only will call when question is empty 
 
     return (  
-        <View style= {{flexDirection: 'column', flex: 14}}>
+        <View style={[styles.contentView, styles.shadowProp]}>
             <ScrollView>
                 {questions.length > 0 ? (questions.map(Entry => {
                         return <Question style = {{flex:2}}
@@ -48,6 +48,25 @@ const QuestionList = (props) => {
     )
 }
 
+const styles = StyleSheet.create({
+  contentView: {
+    flexDirection: 'column', 
+    flex: 14
+  },
+  shadowProp: {
+    shadowColor: '#171717',
+    shadowOffset: {width: 0, height: 8},
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
+  },
+  subHeader: {
+    backgroundColor : "#FCEAD7",
+    color : "white",
+    textAlign : "center",
+    paddingVertical : 5,
+    marginBottom : 10
+  }
+});
 
 export default QuestionList;
 
