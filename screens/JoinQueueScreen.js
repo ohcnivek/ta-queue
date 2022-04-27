@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet} from "react-native";
+import { Pressable, View, Text, TextInput, StyleSheet} from "react-native";
 import QuestionList from '../components/QuestionList';
-import {Button, Input, CheckBox} from 'react-native-elements';
+import {Input, CheckBox} from 'react-native-elements';
 import { post } from '../data/firebase';
 
 
@@ -16,12 +16,12 @@ function JoinQueueScreen(props, {navigation}) {
     const [meetingLinkUserText, setMeetingLinkUserText] = useState("");
     const uid = props.route.params.uid; 
     return (
-        <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start' }}>
+        <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start', backgroundColor: '#FFF5ED',}}>
             <Input placeholder='Name'  onChangeText={(text) => setNameUserText(text)}/>
             <Input placeholder='Question' onChangeText={(text) => setQuestionUserText(text)}/>
             <Input placeholder='Description'  onChangeText={(text) => setDescriptionUserText(text)}/>
 
-            <Text style={{ fontSize: 18 }}>In-Person or Virtual?</Text>
+            <Text style={{ fontSize: 18, fontFamily: 'IBMPlexMono-Regular', marginLeft: 10 }}>In-Person or Virtual?</Text>
             <View style={{flexDirection: 'row', marginLeft: "1%"}}>
               <CheckBox
                 title="In-Person"
@@ -50,7 +50,7 @@ function JoinQueueScreen(props, {navigation}) {
             </View>
 
             <Input placeholder='Meeting Link for Virtual Office Hours' onChangeText={(text) => setMeetingLinkUserText(text)}/>
-            <Text style={{ fontSize: 18 }}>Private or Public?</Text>
+            <Text style={{ fontSize: 18, fontFamily: 'IBMPlexMono-Regular', marginLeft: 10 }}>Private or Public?</Text>
             <View style={{flexDirection: 'row', marginLeft: "1%"}}>
               <CheckBox
                 title="Public"
@@ -78,13 +78,13 @@ function JoinQueueScreen(props, {navigation}) {
               /> 
             </View>
             
-            <Button
-              title="Join Queue"
-              onPress={() => {
+            <Pressable 
+              style = {styles.joinQueueButton} onPress={() => {
                 post(descriptionUserText, [], checkedVirtual, meetingLinkUserText, nameUserText, checkedPrivate, questionUserText, uid, "Waiting...");
                 props.navigation.navigate('Queue', {uid: uid})
-              }}
-            />
+              }}>
+              <Text style={{ fontSize: 18, fontFamily: 'IBMPlexMono-SemiBold'}}>Join Queue</Text>
+            </Pressable>
         </View>
     );
       
@@ -104,18 +104,15 @@ const styles = StyleSheet.create({
       paddingTop: 50,
       //marginTop: 100, margin is outside of block, padding is in
     },
-    //this is for multiple buttons in a column
-    // buttonsContainer: {
-    //   flexDirection: 'row',
-    //   flexWrap: 'wrap',
-    //   justifyContent: 'center',
-    //   alignItems: 'center',
-    //   width: '100%',
-    //   marginVertical: 20,
-    // }, 
     joinQueueButton: {
-      margin: 10,
-      backgroundColor: 'green',
+      marginRight:40,
+      marginLeft:40,
+      marginTop:10,
+      padding:10,
+      backgroundColor:'#C4A484',
+      borderRadius:10,
+      borderWidth: 1,
+      borderColor: '#fff'
     },
     textPrimary: {
       marginVertical: 20,
