@@ -7,7 +7,8 @@ import {addGroupMem} from '../data/firebase'
 
 function JoinQuestionScreen(props, {navigation}) {
     const [nameUserText, setNameUserText] = useState("");
-    const questionID = props.route.params.docID; 
+    const questionID = props.route.params.docID;
+    const uid = props.route.params.uid;
 
     return (
         <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start' }}>
@@ -16,8 +17,8 @@ function JoinQuestionScreen(props, {navigation}) {
             <Button
                 title="Join Question"
                 onPress={() => {
-                  addGroupMem(questionID, nameUserText)
-                  props.navigation.navigate('Queue')
+                  addGroupMem(questionID, nameUserText, uid)
+                  props.navigation.navigate('Queue', {uid: uid})
                 }}
             />
         </View>

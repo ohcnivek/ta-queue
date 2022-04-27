@@ -16,7 +16,8 @@ function LoginScreen(props, {navigation}) {
             .then((userCredential) => {
             // Signed in 
                 const user = userCredential.user;
-                props.navigation.navigate('Queue')
+                console.log("userID:" + user.uid);
+                props.navigation.navigate('Queue', {uid: user.uid})
 
             // ...
             })

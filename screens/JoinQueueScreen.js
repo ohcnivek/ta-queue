@@ -14,7 +14,7 @@ function JoinQueueScreen(props, {navigation}) {
     const [questionUserText, setQuestionUserText] = useState("");
     const [descriptionUserText, setDescriptionUserText] = useState("");
     const [meetingLinkUserText, setMeetingLinkUserText] = useState("");
-
+    const uid = props.route.params.uid; 
     return (
         <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start' }}>
             <Input placeholder='Name'  onChangeText={(text) => setNameUserText(text)}/>
@@ -81,8 +81,8 @@ function JoinQueueScreen(props, {navigation}) {
             <Button
               title="Join Queue"
               onPress={() => {
-                post(descriptionUserText, [], nameUserText, checkedPrivate, questionUserText, "Waiting...");
-                props.navigation.navigate('Queue')
+                post(descriptionUserText, [], nameUserText, checkedPrivate, questionUserText, uid, "Waiting...");
+                props.navigation.navigate('Queue', {uid: uid})
               }}
             />
         </View>

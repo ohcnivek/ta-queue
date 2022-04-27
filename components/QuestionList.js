@@ -8,7 +8,7 @@ import { db } from "../data/firebase";
 const QuestionList = (props) => {
     const [questions, setQuestions] = useState([]);
     const q = query(collection(db, "queue-questions"), orderBy('timeStamp'));
-
+        
     useEffect( 
         () =>
             onSnapshot(q, (querySnapshot) => {
@@ -29,6 +29,7 @@ const QuestionList = (props) => {
             <ScrollView>
                 {questions.length > 0 ? (questions.map(Entry => {
                         return <Question style = {{flex:2}}
+                            uid = {props.uid}
                             isStudent = {props.isStudent}
                             navigation = {props.navigation}
                             name= {Entry.data.name}
@@ -38,6 +39,7 @@ const QuestionList = (props) => {
                             time="4 minutes left"
                             privateBool= {Entry.data.privateBool}
                             groupMem = {Entry.data.privateBool ? [] : Entry.data.groupMem}
+                            uidArray = {Entry.data.privateBool ? [] : Entry.data.uidArray}
                             docID = {Entry.docID}
                             >
                         </Question>

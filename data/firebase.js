@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, doc, deleteDoc, onSnapshot, collection, addDoc, updateDoc, FieldValue, arrayUnion, update, serverTimestamp } from "firebase/firestore";
+import { getFirestore, doc, getDoc, deleteDoc, onSnapshot, collection, addDoc, updateDoc, FieldValue, arrayUnion, update, serverTimestamp } from "firebase/firestore";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import {EXPO_APP_API_KEY,EXPO_APP_PROJECT } from '@env'
 
@@ -20,10 +20,11 @@ export const db = getFirestore(app);
 export const auth = getAuth(app);
 const COLLECTION = "queue-questions"
 
-async function post(desc, groupMem, name, privateBool, question, status) {
+async function post(desc, groupMem, name, privateBool, question, uid, status) {
     const docRef = await addDoc(collection(db, COLLECTION), {
         desc: desc,
         groupMem: groupMem,
+        uidArray: [uid], 
         name: name , 
         privateBool: privateBool , 
         question: question , 
@@ -34,11 +35,29 @@ async function post(desc, groupMem, name, privateBool, question, status) {
       console.log("Success! Document written with ID: ", docRef.id);
 }
 
-async function addGroupMem(docRefID, memberToAdd) {
+async function addGroupMem(docRefID, memberToAdd, uidToAdd) {
   const docRef = doc(db, COLLECTION, docRefID); 
-  const unionRes = await updateDoc(docRef, {
-    groupMem: arrayUnion(memberToAdd)
-  });
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    // console.log("Document data:", docSnap.data());
+    if (docSnap.data().uidArray.includes(uidToAdd)) {
+      console.log("already joined this question")
+      //todo: send an alert
+    } else {
+      const unionRes = await updateDoc(docRef, {
+        groupMem: arrayUnion(memberToAdd)
+      });
+      const unionResUID = await updateDoc(docRef, {
+        uidArray: arrayUnion(uidToAdd)
+      });
+    }
+  } else {
+    // doc.data() will be undefined in this case
+    console.log("No such document!");
+  }
+
+  
 }
 
 async function deleteQuestion(docRefID) {

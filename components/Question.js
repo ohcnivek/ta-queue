@@ -23,7 +23,8 @@ class Question extends Component {
               }
             } else {
               if (this.props.isStudent) {
-                this.props.navigation.navigate('Join Question', {docID: this.props.docID})
+                // if (this.props.)
+                this.props.navigation.navigate('Join Question', {docID: this.props.docID, uid: this.props.uid})
               } else {
                 this.props.navigation.navigate('Manage Queue', {docID: this.props.docID})
               }

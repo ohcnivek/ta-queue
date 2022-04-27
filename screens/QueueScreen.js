@@ -18,13 +18,14 @@ function QueueScreen(props) {
           //   }}
             navigation = {props.navigation}
             isStudent = {true}
-            >
+            uid = {props.route.params.uid} // done
+          >
           </QuestionList>
           
           <Button 
               style = {styles.joinQueueButton}
               title= "Join Queue"
-              onPress={() => props.navigation.navigate('Join Queue')}>
+              onPress={() => props.navigation.navigate('Join Queue', {uid: props.route.params.uid})}> 
           </Button>
       </View>
     );
