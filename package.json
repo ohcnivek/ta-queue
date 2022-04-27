@@ -15,6 +15,11 @@
     "react-native-web": "0.17.1",
     "expo-clipboard": "~2.1.0"
   },
+  "rnpm": {
+    "assets": [
+    "./assets/fonts/"
+    ]
+  },
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "babel-plugin-transform-inline-environment-variables": "^0.4.3"
