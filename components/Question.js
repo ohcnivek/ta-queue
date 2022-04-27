@@ -26,8 +26,7 @@ class Question extends Component {
                 console.log(this.props.uidArray)
                 if (this.props.uidArray.includes(this.props.uid)) {
                   // student owns or has already joined question
-                  Alert.alert("You have joined the question!")
-                  // this.props.navigate.navigate('Meeting Link', {docID: this.props.docID})
+                  this.props.navigation.navigate('Meeting Link', {docID: this.props.docID, meetingLink: this.props.meetingLink})
                 } else {
                   //student wants to join question
                   this.props.navigation.navigate('Join Question', {docID: this.props.docID, uid: this.props.uid})

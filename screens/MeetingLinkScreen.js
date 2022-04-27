@@ -1,40 +1,23 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet} from "react-native";
+import { View, Text, StyleSheet, Alert} from "react-native";
 import QuestionList from '../components/QuestionList';
 import {Button, Input, CheckBox} from 'react-native-elements';
 import {deleteQuestion, updateStatus} from '../data/firebase'
-
+import * as Clipboard from 'expo-clipboard';
 
 function MeetingLinkScreen(props, {navigation}) {
     const questionID = props.route.params.docID; 
-    
+    const meetingLink = props.route.params.meetingLink; 
 
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Button
-                title="Delete/ Done with Question "
+                title="Copy Meeting Link"
                 onPress={() => {
-                  deleteQuestion(questionID)
-                  props.navigation.navigate('TA Queue')
-                }}
-                style={{marginBottom: "2%"}}
-            />
-            <Button
-                title="Set Status to: In Progress"
-                onPress={() => {
-                  // deleteQuestion(questionID)
-                  updateStatus(questionID, "In Progress")
-                  props.navigation.navigate('TA Queue')
-                }}
-                style={{marginBottom: "2%"}}
-            />
-
-            <Button
-                title="Revert Status to: Waiting"
-                onPress={() => {
-                  // deleteQuestion(questionID)
-                  updateStatus(questionID, "Waiting...")
-                  props.navigation.navigate('TA Queue')
+                  Alert.alert('Meeting Link Copied to Clipboard', meetingLink, [
+                    {text: 'OK', onPress: () => console.log('OK Pressed') },
+                  ]);
+                  Clipboard.setString(meetingLink);
                 }}
                 style={{marginBottom: "2%"}}
             />

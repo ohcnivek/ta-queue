@@ -14,6 +14,7 @@ import TaManagementScreen from './screens/TaManagementScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import LoginScreen from './screens/LoginScreen';
 import LoginorSignUpScreen from './screens/LoginorSignUpScreen';
+import MeetingLinkScreen from './screens/MeetingLinkScreen';
 
 const Stack = createNativeStackNavigator();
 console.disableYellowBox = true; 
@@ -30,6 +31,7 @@ export default function App({ navigation }) {
         <Stack.Screen name="Manage Queue" component={TaManagementScreen}/>
         <Stack.Screen name="Sign Up" component={SignUpScreen}/>
         <Stack.Screen name="Login" component={LoginScreen}/>
+        <Stack.Screen name="Meeting Link" component={MeetingLinkScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
