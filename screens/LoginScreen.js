@@ -18,7 +18,6 @@ function LoginScreen(props, {navigation}) {
                 const user = userCredential.user;
                 console.log("userID:" + user.uid);
                 props.navigation.navigate('Queue', {uid: user.uid})
-
             // ...
             })
             .catch((error) => {
