@@ -27,7 +27,7 @@ const QuestionList = (props) => {
     return (  
         <View style={[styles.contentView, styles.shadowProp]}>
             <ScrollView>
-                {questions.length > 0 ? (questions.map(Entry => {
+                {questions.length > 0 ? (questions.map((Entry, index) => {
                         return <Question style = {{flex:2}}
                             uid = {props.uid}
                             isStudent = {props.isStudent}
@@ -37,11 +37,12 @@ const QuestionList = (props) => {
                             desc= {Entry.data.desc}
                             meetingLink = {Entry.data.meetingLink}
                             status= {Entry.data.status}
-                            time="4 minutes left"
+                            time= {index*15 + " minutes left"}
                             privateBool= {Entry.data.privateBool}
                             groupMem = {Entry.data.privateBool ? [] : Entry.data.groupMem}
                             uidArray = {Entry.data.privateBool ? [] : Entry.data.uidArray}
                             docID = {Entry.docID}
+                            pushTokens = {Entry.data.pushTokens}
                             >
                         </Question>
                     })) : (<Text> No posts :( </Text>)
