@@ -17,10 +17,18 @@ import LoginorSignUpScreen from './screens/LoginorSignUpScreen';
 import MeetingLinkScreen from './screens/MeetingLinkScreen';
 import RequestsScreen from './screens/RequestsScreen';
 
+import { useFonts } from 'expo-font';
+import AppLoading from 'expo-app-loading';
+
 const Stack = createNativeStackNavigator();
 console.disableYellowBox = true; 
 
 export default function App({ navigation }) {
+  const [fontsLoaded] = useFonts({
+    'IBMPlexMono-SemiBoldItalic': require('./assets/fonts/IBMPlexMono-SemiBoldItalic.ttf'),
+    'IBMPlexMono-SemiBold': require('./assets/fonts/IBMPlexMono-SemiBold.ttf'),
+    'IBMPlexMono-Regular': require('./assets/fonts/IBMPlexMono-Regular.ttf'),
+  });
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
