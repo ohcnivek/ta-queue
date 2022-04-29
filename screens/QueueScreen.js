@@ -4,9 +4,7 @@ import QuestionList from '../components/QuestionList';
 import {Button, Input} from 'react-native-elements';
 import {registerForPushNotificationsAsync} from '../data/notifications';
 
-
 function QueueScreen(props) {
-  console.log("hello")
   registerForPushNotificationsAsync();
     return (
       <View style={{

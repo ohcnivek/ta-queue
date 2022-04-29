@@ -16,8 +16,8 @@ const QuestionList = (props) => {
                 const realTimeQuestions = [];
                 querySnapshot.forEach(doc => {
                     realTimeQuestions.push({data: doc.data(), docID: doc.id});
-                    console.log(doc.id)
-                    console.log(doc.data())
+                    // console.log(doc.id)
+                    // console.log(doc.data())
                 });
             setQuestions(realTimeQuestions);
         })

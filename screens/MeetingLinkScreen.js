@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, Alert} from "react-native";
 import QuestionList from '../components/QuestionList';
 import {Button, Input, CheckBox} from 'react-native-elements';
-import {deleteQuestion, updateStatus} from '../data/firebase'
+import {deleteQuestion, updateStatus, leaveQuestion} from '../data/firebase'
 import * as Clipboard from 'expo-clipboard';
 
 function MeetingLinkScreen(props, {navigation}) {
     const questionID = props.route.params.docID; 
+    const uid = props.route.params.uid;
     const meetingLink = props.route.params.meetingLink; 
 
     return (
@@ -19,8 +20,11 @@ function MeetingLinkScreen(props, {navigation}) {
                   ]);
                   Clipboard.setString(meetingLink);
                 }}
-                style={{marginBottom: "2%"}}
+                //style={{marginBottom: "2%"}}
             />
+            <Button
+                title="Leave Question" style={styles.leaveButton} onPress = {() => {leaveQuestion(questionID, uid);
+                 props.navigation.navigate('Queue', {uid: uid})}}/>
         </View>
     );
       
@@ -49,9 +53,16 @@ const styles = StyleSheet.create({
     //   width: '100%',
     //   marginVertical: 20,
     // }, 
-    joinQueueButton: {
-      margin: 10,
-      backgroundColor: 'green',
+    leaveButton: {
+      fontSize:232,
+      marginLeft:40,
+      marginTop:10,
+      padding:10,
+      color:'red',
+      backgroundColor: "red",
+      borderRadius:10,
+      borderWidth: 1,
+      borderColor: 'red'
     },
     textPrimary: {
       marginVertical: 20,

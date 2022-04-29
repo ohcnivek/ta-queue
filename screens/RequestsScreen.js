@@ -4,10 +4,12 @@ import {Button, Input, CheckBox} from 'react-native-elements';
 import {deleteQuestion, updateStatus} from '../data/firebase'
 import * as Clipboard from 'expo-clipboard';
 import RequestsList from './RequestsList';
-
+import {leaveQuestion} from '../data/firebase'
 
 function RequestsScreen(props, {navigation}) {
   const meetingLink = props.route.params.meetingLink;
+  const questionID = props.route.params.docID;
+  const uid = props.route.params.uid;
 
     return (
       <View style={{
@@ -37,6 +39,9 @@ function RequestsScreen(props, {navigation}) {
                 }}
                 style={{marginBottom: "2%"}}
             />
+            <Button
+                title="Leave Question" style={styles.leaveButton} onPress = {() => {leaveQuestion(questionID, uid);
+                 props.navigation.navigate('Queue', {uid: uid})}}/>
       </View>
     );
   }
