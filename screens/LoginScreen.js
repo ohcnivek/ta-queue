@@ -3,7 +3,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } f
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Alert} from "react-native";
 import {Button, Input, CheckBox} from 'react-native-elements';
-import {auth} from '../data/firebase'
+import {auth, setInQuestionToFalse} from '../data/firebase'
 
 
 function LoginScreen(props, {navigation}) {
@@ -50,6 +50,7 @@ function LoginScreen(props, {navigation}) {
                     title="Login Button"
                     onPress={() => {
                         onClick(username, password);
+                        setInQuestionToFalse();
                     }}
                 />
             </View>
