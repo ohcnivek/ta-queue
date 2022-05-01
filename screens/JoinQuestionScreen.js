@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Pressable, View, Text, StyleSheet} from "react-native";
-import { View, Text, StyleSheet, Alert} from "react-native";
+import { Pressable, View, Text, StyleSheet, Alert} from "react-native";
 import QuestionList from '../components/QuestionList';
 import {Button, Input, CheckBox} from 'react-native-elements';
 import {addGroupMem, join_request} from '../data/firebase'
