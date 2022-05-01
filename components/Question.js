@@ -20,15 +20,18 @@ class Question extends Component {
             } else {
               if (this.props.isStudent) {
                 console.log(this.props.uidArray)
-                if (this.props.uidArray.includes(this.props.uid)) {
+                if (this.props.uid == this.props.uidArray[0]) {
+                  this.props.navigation.navigate('Requests Screen', {docID: this.props.docID, meetingLink: this.props.meetingLink, uid: this.props.uid})
+                }
+                else if (this.props.uidArray.includes(this.props.uid)) {
                   // student owns or has already joined question
-                  this.props.navigation.navigate('Meeting Link', {docID: this.props.docID, meetingLink: this.props.meetingLink})
+                  this.props.navigation.navigate('Meeting Link', {docID: this.props.docID, meetingLink: this.props.meetingLink, uid: this.props.uid})
                 } else {
                   //student wants to join question
                   this.props.navigation.navigate('Join Question', {docID: this.props.docID, uid: this.props.uid})
                 }
               } else {
-                this.props.navigation.navigate('Manage Queue', {docID: this.props.docID, meetingLink: this.props.meetingLink})
+                this.props.navigation.navigate('Manage Queue', {docID: this.props.docID, pushTokens: this.props.pushTokens, meetingLink: this.props.meetingLink})
               }
             }
           }}

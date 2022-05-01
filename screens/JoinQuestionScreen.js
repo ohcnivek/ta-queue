@@ -1,23 +1,29 @@
 import React, { useState } from 'react';
 import { Pressable, View, Text, StyleSheet} from "react-native";
 import QuestionList from '../components/QuestionList';
-import {Input, CheckBox} from 'react-native-elements';
-import {addGroupMem} from '../data/firebase'
-
+import {Button, Input, CheckBox} from 'react-native-elements';
+import {addGroupMem, join_request} from '../data/firebase'
 
 function JoinQuestionScreen(props, {navigation}) {
     const [nameUserText, setNameUserText] = useState("");
+    const [reasonToJoinText, setReasonToJoinText] = useState();
     const questionID = props.route.params.docID;
     const uid = props.route.params.uid;
 
     return (
         <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start' }}>
+
             <Input style={{ fontSize: 18, fontFamily: 'IBMPlexMono-Regular'}} placeholder='Name' onChangeText={(text) => setNameUserText(text)}/>
-            <Input style={{ fontSize: 18, fontFamily: 'IBMPlexMono-Regular'}} placeholder='Reason to join'/>
+            <Input style={{ fontSize: 18, fontFamily: 'IBMPlexMono-Regular'}} placeholder='Reason to join' onChangeText={(text) => setReasonToJoinText(text)}/>
             
             <Pressable 
-              style = {styles.joinQueueButton} onPress={() => {
-                  addGroupMem(questionID, nameUserText, uid)
+              style = {styles.joinQueueButton} 
+                // onPress={() => {
+                //   addGroupMem(questionID, nameUserText, uid)
+                //   props.navigation.navigate('Queue', {uid: uid})
+                // }}
+                onPress={() => {
+                  join_request(questionID, uid, nameUserText, reasonToJoinText)
                   props.navigation.navigate('Queue', {uid: uid})
                 }}>
               <Text style={{ fontSize: 18, fontFamily: 'IBMPlexMono-SemiBold'}}>Join Question</Text>

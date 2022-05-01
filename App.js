@@ -15,6 +15,7 @@ import SignUpScreen from './screens/SignUpScreen';
 import LoginScreen from './screens/LoginScreen';
 import LoginorSignUpScreen from './screens/LoginorSignUpScreen';
 import MeetingLinkScreen from './screens/MeetingLinkScreen';
+import RequestsScreen from './screens/RequestsScreen';
 
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
@@ -40,6 +41,7 @@ export default function App({ navigation }) {
         <Stack.Screen name="Sign Up" component={SignUpScreen}/>
         <Stack.Screen name="Login" component={LoginScreen}/>
         <Stack.Screen name="Meeting Link" component={MeetingLinkScreen}/>
+        <Stack.Screen name="Requests Screen" component={RequestsScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

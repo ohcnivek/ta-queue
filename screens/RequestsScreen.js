@@ -1,34 +1,50 @@
 import React, { useState } from 'react';
-import { Pressable, View, Text, StyleSheet, Alert} from "react-native";
-import QuestionList from '../components/QuestionList';
+import { View, Text, StyleSheet, Alert} from "react-native";
 import {Button, Input, CheckBox} from 'react-native-elements';
-import {deleteQuestion, updateStatus, leaveQuestion} from '../data/firebase'
+import {deleteQuestion, updateStatus} from '../data/firebase'
 import * as Clipboard from 'expo-clipboard';
+import RequestsList from './RequestsList';
+import {leaveQuestion} from '../data/firebase'
 
-function MeetingLinkScreen(props, {navigation}) {
-    const questionID = props.route.params.docID; 
-    const uid = props.route.params.uid;
-    const meetingLink = props.route.params.meetingLink; 
+function RequestsScreen(props, {navigation}) {
+  const meetingLink = props.route.params.meetingLink;
+  const questionID = props.route.params.docID;
+  const uid = props.route.params.uid;
 
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Pressable 
-              style = {styles.joinQueueButton} onPress={() => {
+      <View style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: '#FFF5ED',
+        }}
+      >
+          <RequestsList
+          // press={(docID) => {
+          //       props.navigation.navigate('Join Question', {docRefID: docID})
+          //   }}
+            navigation = {props.navigation}
+            isStudent = {true}
+            uid = {props.route.params.uid} // done
+            questionID = {props.route.params.docID}
+          >
+          </RequestsList>
+          <Button
+                title="Copy Meeting Link"
+                onPress={() => {
                   Alert.alert('Meeting Link Copied to Clipboard', meetingLink, [
                     {text: 'OK', onPress: () => console.log('OK Pressed') },
                   ]);
                   Clipboard.setString(meetingLink);
-                }}>
-              <Text style={{ fontSize: 18, fontFamily: 'IBMPlexMono-SemiBold'}}>Copy Meeting Link</Text>
-            </Pressable>
+                }}
+                style={{marginBottom: "2%"}}
+            />
             <Button
                 title="Leave Question" style={styles.leaveButton} onPress = {() => {leaveQuestion(questionID, uid);
                  props.navigation.navigate('Queue', {uid: uid})}}/>
-        </View>
+      </View>
     );
-      
   }
-
 
 const styles = StyleSheet.create({
     contentView: {
@@ -43,18 +59,6 @@ const styles = StyleSheet.create({
       paddingTop: 50,
       //marginTop: 100, margin is outside of block, padding is in
     },
-<<<<<<< HEAD
-    joinQueueButton: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginRight:100,
-      marginLeft:100,
-      padding:10,
-      backgroundColor:'#C4A484',
-      borderRadius:10,
-      borderWidth: 1,
-      borderColor: '#fff'
-=======
     //this is for multiple buttons in a column
     // buttonsContainer: {
     //   flexDirection: 'row',
@@ -64,17 +68,15 @@ const styles = StyleSheet.create({
     //   width: '100%',
     //   marginVertical: 20,
     // }, 
-    leaveButton: {
-      fontSize:232,
+    joinQueueButton: {
+      marginRight:40,
       marginLeft:40,
       marginTop:10,
       padding:10,
-      color:'red',
-      backgroundColor: "red",
+      backgroundColor:'#C4A484',
       borderRadius:10,
       borderWidth: 1,
-      borderColor: 'red'
->>>>>>> origin
+      borderColor: '#fff'
     },
     textPrimary: {
       marginVertical: 20,
@@ -96,5 +98,9 @@ const styles = StyleSheet.create({
     }
   });
 
-export default MeetingLinkScreen;
+
+
+
+
+export default RequestsScreen;
 

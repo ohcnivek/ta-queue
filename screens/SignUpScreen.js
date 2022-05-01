@@ -18,7 +18,7 @@ function SignUpScreen(props, {navigation}) {
                 const user = userCredential.user;
                 const userUID = user.uid;
                 console.log(userUID) // can pass this around
-                props.navigation.navigate('Queue')
+                props.navigation.navigate('Queue', {uid: user.uid})
             })
             .catch((error) => {
                 const errorCode = error.code;
