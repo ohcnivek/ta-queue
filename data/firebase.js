@@ -70,7 +70,7 @@ async function post(
     question: question,
     status: status,
     timeStamp: serverTimestamp(),
-    pushTokens: [pushToken],
+
   });
   inQuestion = true;
   console.log("Success! Document written with ID: ", docRef.id);
@@ -102,7 +102,6 @@ async function accept_join_request(
   const docRef = doc(db, COLLECTION, questionID);
   const unionRes = await updateDoc(docRef, {
     groupMem: arrayUnion(memberToAdd),
-    pushTokens: arrayUnion(pushToken),
   });
   const unionResUID = await updateDoc(docRef, {
     uidArray: arrayUnion(uidToAdd),
