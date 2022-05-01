@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Alert} from "react-native";
+import { Pressable, View, Text, StyleSheet, Alert} from "react-native";
 import {Button, Input, CheckBox} from 'react-native-elements';
 import {deleteQuestion, updateStatus} from '../data/firebase'
 import * as Clipboard from 'expo-clipboard';
@@ -29,19 +29,22 @@ function RequestsScreen(props, {navigation}) {
             questionID = {props.route.params.docID}
           >
           </RequestsList>
-          <Button
-                title="Copy Meeting Link"
+          <Pressable
+                style = {styles.copyMeetingLink}
                 onPress={() => {
                   Alert.alert('Meeting Link Copied to Clipboard', meetingLink, [
                     {text: 'OK', onPress: () => console.log('OK Pressed') },
                   ]);
                   Clipboard.setString(meetingLink);
-                }}
-                style={{marginBottom: "2%"}}
-            />
-            <Button
-                title="Leave Question" style={styles.leaveButton} onPress = {() => {leaveQuestion(questionID, uid);
-                 props.navigation.navigate('Queue', {uid: uid})}}/>
+                }}>
+            <Text style={{ fontSize: 18, fontFamily: 'IBMPlexMono-SemiBold'}}>Copy Meeting Link</Text>
+            </Pressable>
+            <Pressable
+                style={styles.leaveButton} onPress = {() => {leaveQuestion(questionID, uid);
+                props.navigation.navigate('Queue', {uid: uid})
+              }}>
+              <Text style={{ fontSize: 18, fontFamily: 'IBMPlexMono-SemiBold'}}>Leave Question</Text>
+                 </Pressable>
       </View>
     );
   }
@@ -59,34 +62,25 @@ const styles = StyleSheet.create({
       paddingTop: 50,
       //marginTop: 100, margin is outside of block, padding is in
     },
-    //this is for multiple buttons in a column
-    // buttonsContainer: {
-    //   flexDirection: 'row',
-    //   flexWrap: 'wrap',
-    //   justifyContent: 'center',
-    //   alignItems: 'center',
-    //   width: '100%',
-    //   marginVertical: 20,
-    // }, 
-    joinQueueButton: {
+    copyMeetingLink: {
       marginRight:40,
       marginLeft:40,
-      marginTop:10,
+      marginBottom:100,
       padding:10,
       backgroundColor:'#C4A484',
       borderRadius:10,
       borderWidth: 1,
       borderColor: '#fff'
     },
-    textPrimary: {
-      marginVertical: 20,
-      textAlign: 'center',
-      fontSize: 20,
-    },
-    textSecondary: {
-      marginBottom: 10,
-      textAlign: 'center',
-      fontSize: 17,
+    leaveButton: {
+      marginRight:40,
+      marginLeft:40,
+      marginBottom:100,
+      padding:10,
+      backgroundColor:'#C4A484',
+      borderRadius:10,
+      borderWidth: 1,
+      borderColor: '#fff'
     },
     subHeader: {
       backgroundColor : "#FCEAD7",
