@@ -11,7 +11,7 @@ function MeetingLinkScreen(props, {navigation}) {
     const meetingLink = props.route.params.meetingLink; 
 
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#FFF5ED' }}>
             <Pressable 
               style = {styles.joinQueueButton} onPress={() => {
                   Alert.alert('Meeting Link Copied to Clipboard', meetingLink, [

@@ -11,7 +11,7 @@ function JoinQuestionScreen(props, {navigation}) {
     const uid = props.route.params.uid;
 
     return (
-        <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start' }}>
+        <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'flex-start', backgroundColor: '#FFF5ED' }}>
 
             <Input style={{ fontSize: 18, fontFamily: 'IBMPlexMono-Regular'}} placeholder='Name' onChangeText={(text) => setNameUserText(text)}/>
             <Input style={{ fontSize: 18, fontFamily: 'IBMPlexMono-Regular'}} placeholder='Reason to join' onChangeText={(text) => setReasonToJoinText(text)}/>

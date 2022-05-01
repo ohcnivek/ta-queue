@@ -13,7 +13,7 @@ function TaManagementScreen(props, {navigation}) {
     const pushTokens = props.route.params.pushTokens;
 
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#FFF5ED' }}>
           <View style={{flex:1}}/>
             <Pressable
                 style = {styles.copyMeetingLink}
@@ -40,9 +40,9 @@ function TaManagementScreen(props, {navigation}) {
                 onPress={() => {
                   // deleteQuestion(questionID)
                   updateStatus(questionID, "In Progress")
-                  pushTokens.forEach((entry) => {
-                    sendPushNotification(entry);
-                  })
+                  // pushTokens.forEach((entry) => {
+                  //   sendPushNotification(entry);
+                  // })
                   props.navigation.navigate('TA Queue')
                 }}>
                 <Text style={{ fontSize: 18, fontFamily: 'IBMPlexMono-SemiBold'}}>Set Status to: In Progress</Text>
