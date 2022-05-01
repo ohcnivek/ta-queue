@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Alert} from "react-native";
+import { Pressable, View, Text, StyleSheet, Alert} from "react-native";
 import QuestionList from '../components/QuestionList';
 import {Button, Input, CheckBox} from 'react-native-elements';
 import {deleteQuestion, updateStatus} from '../data/firebase'
@@ -14,26 +14,29 @@ function TaManagementScreen(props, {navigation}) {
 
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Button
-                title="Copy Meeting Link"
+          <View style={{flex:1}}/>
+            <Pressable
+                style = {styles.copyMeetingLink}
                 onPress={() => {
                   Alert.alert('Meeting Link Copied to Clipboard', meetingLink, [
                     {text: 'OK', onPress: () => console.log('OK Pressed') },
                   ]);
                   Clipboard.setString(meetingLink);
-                }}
-                style={{marginBottom: "2%"}}
-            />
-            <Button
-                title="Delete/ Done with Question "
+                }}>
+                <Text style={{ fontSize: 18, fontFamily: 'IBMPlexMono-SemiBold'}}>Copy Meeting Link</Text>
+            </Pressable>
+            <View style={{flex:1}}/>
+            <Pressable
+                style = {styles.doneWithQuestion}
                 onPress={() => {
                   deleteQuestion(questionID)
                   props.navigation.navigate('TA Queue')
-                }}
-                style={{marginBottom: "2%"}}
-            />
-            <Button
-                title="Set Status to: In Progress"
+                }}>
+              <Text style={{ fontSize: 18, fontFamily: 'IBMPlexMono-SemiBold'}}>Delete/ Done with Question</Text>
+            </Pressable>
+            <View style={{flex:1}}/>
+            <Pressable
+                style = {styles.setInProgress}
                 onPress={() => {
                   // deleteQuestion(questionID)
                   updateStatus(questionID, "In Progress")
@@ -41,19 +44,20 @@ function TaManagementScreen(props, {navigation}) {
                     sendPushNotification(entry);
                   })
                   props.navigation.navigate('TA Queue')
-                }}
-                style={{marginBottom: "2%"}}
-            />
-
-            <Button
-                title="Revert Status to: Waiting"
+                }}>
+                <Text style={{ fontSize: 18, fontFamily: 'IBMPlexMono-SemiBold'}}>Set Status to: In Progress</Text>
+            </Pressable>
+            <View style={{flex:1}}/>
+            <Pressable
+                style = {styles.setWaiting}
                 onPress={() => {
                   // deleteQuestion(questionID)
                   updateStatus(questionID, "Waiting...")
                   props.navigation.navigate('TA Queue')
-                }}
-                style={{marginBottom: "2%"}}
-            />
+                }}>
+              <Text style={{ fontSize: 18, fontFamily: 'IBMPlexMono-SemiBold'}}>Revert Status to: Waiting</Text>
+            </Pressable>
+          <View style={{flex:1}}/>
         </View>
     );
       
@@ -61,49 +65,42 @@ function TaManagementScreen(props, {navigation}) {
 
 
 const styles = StyleSheet.create({
-    contentView: {
-      flex: 1,
+    copyMeetingLink: {
+      marginRight:40,
+      marginLeft:40,
+      padding:10,
+      backgroundColor:'#C4A484',
+      borderRadius:10,
+      borderWidth: 1,
+      borderColor: '#fff'
     },
-    title: {
-      justifyContent: "flex-end",
-      alignItems: "flex-end",
-      fontSize: 30,
-      color: '#6b635b',
-      flex: 1,
-      paddingTop: 50,
-      //marginTop: 100, margin is outside of block, padding is in
+    doneWithQuestion: {
+      marginRight:40,
+      marginLeft:40,
+      padding:10,
+      backgroundColor:'#C4A484',
+      borderRadius:10,
+      borderWidth: 1,
+      borderColor: '#fff'
     },
-    //this is for multiple buttons in a column
-    // buttonsContainer: {
-    //   flexDirection: 'row',
-    //   flexWrap: 'wrap',
-    //   justifyContent: 'center',
-    //   alignItems: 'center',
-    //   width: '100%',
-    //   marginVertical: 20,
-    // }, 
-    joinQueueButton: {
-      margin: 10,
-      backgroundColor: 'green',
+    setInProgress: {
+      marginRight:40,
+      marginLeft:40,
+      padding:10,
+      backgroundColor:'#C4A484',
+      borderRadius:10,
+      borderWidth: 1,
+      borderColor: '#fff'
     },
-    textPrimary: {
-      marginVertical: 20,
-      textAlign: 'center',
-      fontSize: 20,
+    setWaiting: {
+      marginRight:40,
+      marginLeft:40,
+      padding:10,
+      backgroundColor:'#C4A484',
+      borderRadius:10,
+      borderWidth: 1,
+      borderColor: '#fff'
     },
-    textSecondary: {
-      marginBottom: 10,
-      textAlign: 'center',
-      fontSize: 17,
-    },
-    subHeader: {
-      backgroundColor : "#FCEAD7",
-      color : "red",
-      fontSize : 100,
-      textAlign : "center",
-      paddingVertical : 5,
-      marginBottom : 10
-    }
   });
 
 export default TaManagementScreen;
