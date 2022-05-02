@@ -39,8 +39,8 @@ const QuestionList = (props) => {
                             status= {Entry.data.status}
                             time= {index*15 + " minutes left"}
                             privateBool= {Entry.data.privateBool}
-                            groupMem = {Entry.data.privateBool ? [] : Entry.data.groupMem}
-                            uidArray = {Entry.data.privateBool ? [] : Entry.data.uidArray}
+                            groupMem = {Entry.data.groupMem}
+                            uidArray = {Entry.data.uidArray}
                             docID = {Entry.docID}
                             pushTokens = {Entry.data.pushTokens}
                             >

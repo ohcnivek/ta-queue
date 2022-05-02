@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Pressable, View, Text, StyleSheet} from "react-native";
+import { Pressable, View, Text, StyleSheet, Alert} from "react-native";
 import QuestionList from '../components/QuestionList';
 import {Button, Input, CheckBox} from 'react-native-elements';
 import {addGroupMem, join_request} from '../data/firebase'
@@ -24,7 +24,9 @@ function JoinQuestionScreen(props, {navigation}) {
                 // }}
                 onPress={() => {
                   join_request(questionID, uid, nameUserText, reasonToJoinText)
-                  props.navigation.navigate('Queue', {uid: uid})
+                  Alert.alert('Request to join question sent!', "", [
+                    {text: 'OK', onPress: () => props.navigation.navigate('Queue', {uid: uid}) },
+                  ]);
                 }}>
               <Text style={{ fontSize: 18, fontFamily: 'IBMPlexMono-SemiBold'}}>Join Question</Text>
             </Pressable>

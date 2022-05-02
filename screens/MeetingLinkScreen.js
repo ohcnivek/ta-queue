@@ -21,9 +21,12 @@ function MeetingLinkScreen(props, {navigation}) {
                 }}>
               <Text style={{ fontSize: 18, fontFamily: 'IBMPlexMono-SemiBold'}}>Copy Meeting Link</Text>
             </Pressable>
-            <Button
-                title="Leave Question" style={styles.leaveButton} onPress = {() => {leaveQuestion(questionID, uid);
-                 props.navigation.navigate('Queue', {uid: uid})}}/>
+            <Pressable
+                style={styles.leaveButton} onPress = {() => {leaveQuestion(questionID, uid);
+                props.navigation.navigate('Queue', {uid: uid})
+              }}>
+              <Text style={{ fontSize: 18, fontFamily: 'IBMPlexMono-SemiBold'}}>Leave Question</Text>
+                 </Pressable>
         </View>
     );
       
@@ -43,16 +46,15 @@ const styles = StyleSheet.create({
       borderColor: '#fff'
     },
     leaveButton: {
-      fontSize:232,
+      marginRight:40,
       marginLeft:40,
-      marginTop:10,
+      marginBottom:100,
       padding:10,
-      color:'red',
-      backgroundColor: "red",
+      backgroundColor:'#C4A484',
       borderRadius:10,
       borderWidth: 1,
-      borderColor: 'red'
-    }
+      borderColor: '#fff'
+    },
   });
 
 export default MeetingLinkScreen;
