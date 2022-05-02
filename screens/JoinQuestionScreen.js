@@ -6,7 +6,7 @@ import {addGroupMem, join_request} from '../data/firebase'
 
 function JoinQuestionScreen(props, {navigation}) {
     const [nameUserText, setNameUserText] = useState("");
-    const [reasonToJoinText, setReasonToJoinText] = useState();
+    const [reasonToJoinText, setReasonToJoinText] = useState("");
     const questionID = props.route.params.docID;
     const uid = props.route.params.uid;
 
