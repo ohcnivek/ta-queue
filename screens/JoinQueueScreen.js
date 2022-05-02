@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { Pressable, View, Text, TextInput, StyleSheet} from "react-native";
+import { Pressable, View, Text, TextInput, StyleSheet, Alert} from "react-native";
 import QuestionList from '../components/QuestionList';
 import {Input, CheckBox} from 'react-native-elements';
 import { post } from '../data/firebase';
 
 
 function JoinQueueScreen(props, {navigation}) {
-    const [checkedInPerson, toggleCheckedInPerson] = useState(false);
+    const [checkedInPerson, toggleCheckedInPerson] = useState(true);
     const [checkedVirtual, toggleCheckedVirtual] = useState(false);
     const [checkedPrivate, toggleCheckedPrivate] = useState(false);
-    const [checkedPublic, toggleCheckedPublic] = useState(false);
+    const [checkedPublic, toggleCheckedPublic] = useState(true);
     const [nameUserText, setNameUserText] = useState("");
     const [questionUserText, setQuestionUserText] = useState("");
     const [descriptionUserText, setDescriptionUserText] = useState("");
@@ -27,6 +27,7 @@ function JoinQueueScreen(props, {navigation}) {
                 title="In-Person"
                 checked={checkedInPerson}
                 fontFamily='IBMPlexMono-Regular'
+                value = {true}
                 onPress={() => {
                   if (checkedInPerson === false && checkedVirtual === false) {
                     toggleCheckedInPerson(!checkedInPerson)
@@ -84,8 +85,15 @@ function JoinQueueScreen(props, {navigation}) {
             
             <Pressable 
               style = {styles.joinQueueButton} onPress={() => {
-                post(descriptionUserText, [], checkedVirtual, meetingLinkUserText, nameUserText, checkedPrivate, questionUserText, uid, "Waiting...");
-                props.navigation.navigate('Queue', {uid: uid})
+                if ((descriptionUserText === "" || nameUserText === "" ||  questionUserText === "")) {
+                    Alert.alert("Need your input!", "Please fill in your name, question, and description!")
+                } else if (meetingLinkUserText === "" && checkedVirtual === true) {
+                    Alert.alert("Need your input!", "If you are meeting virtually, please provide a link!")
+                } else {
+                  post(descriptionUserText, [], checkedVirtual, meetingLinkUserText, nameUserText, checkedPrivate, questionUserText, uid, "Waiting...");
+                  props.navigation.navigate('Queue', {uid: uid})
+                }
+                
               }}>
               <Text style={{ fontSize: 18, fontFamily: 'IBMPlexMono-SemiBold'}}>Join Queue</Text>
             </Pressable>
