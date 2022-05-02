@@ -23,10 +23,13 @@ function JoinQuestionScreen(props, {navigation}) {
                 //   props.navigation.navigate('Queue', {uid: uid})
                 // }}
                 onPress={() => {
-                  join_request(questionID, uid, nameUserText, reasonToJoinText)
-                  Alert.alert('Request to join question sent!', "", [
-                    {text: 'OK', onPress: () => props.navigation.navigate('Queue', {uid: uid}) },
-                  ]);
+                  if (nameUserText ==="" || reasonToJoinText ==="") {
+                    Alert.alert("Please fill in all required fields!")
+                  } else {
+                    join_request(questionID, uid, nameUserText, reasonToJoinText)
+                    Alert.alert('Request to join question sent!')
+                    props.navigation.navigate('Queue', {uid: uid})
+                  }
                 }}>
               <Text style={{ fontSize: 18, fontFamily: 'IBMPlexMono-SemiBold'}}>Join Question</Text>
             </Pressable>

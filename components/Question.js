@@ -18,7 +18,7 @@ class Question extends Component {
                     this.props.navigation.navigate('Meeting Link', {docID: this.props.docID, meetingLink: this.props.meetingLink})
                   } else {
                     // student owner's question is public
-                    this.props.navigation.navigate('Requests Screen', {docID: this.props.docID, meetingLink: this.props.meetingLink})
+                    this.props.navigation.navigate('Requests Screen', {uid: this.props.uid, docID: this.props.docID, meetingLink: this.props.meetingLink})
                   }
                 } else if (this.props.uidArray.includes(this.props.uid)) {
                   // student is a member of this question
