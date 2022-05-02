@@ -54,7 +54,7 @@ function LoginorSignUpScreen(props, {navigation}) {
                 width: 200,
                 marginVertical: 10,
               }}
-              title= "tmp button for ta"
+              title= "TA/ Instructor"
               onPress={() => props.navigation.navigate('TA Queue')}>
           </Button>
       </View>
