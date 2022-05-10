@@ -6,3 +6,6 @@ Built w React for the Frontend, and uses Firebase's cloud functions + firestore 
 
 # To Run
 `npm install` + `npm start`
+
+# To Build
+`expo build:ios`
